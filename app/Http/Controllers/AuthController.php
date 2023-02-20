@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Bank;
+use App\Models\BankAccount;
 use App\Models\User;
 use App\Models\Province;
 use Illuminate\Support\Str;
 use App\Models\UserActivate;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Intervention\Image\Facades\Image;
 
 class AuthController extends Controller
 {
@@ -138,20 +141,75 @@ class AuthController extends Controller
     {
         $title = "Lengkapi Data";
         $provinces = Province::get();
-        return view('contents.auth.complete', compact('title', 'provinces'));
+        $banks  = Bank::get();
+        return view('contents.auth.complete', compact('title', 'provinces', 'banks'));
     }
 
     public function sendCompleteData(Request $request)
     {
         $validatedData = $request->validate([
-            'nik'               =>  'required|max:16',
-            'phone_number'      =>  'required|min:10|max:13|numeric',
+            'nik'               =>  'required|max:16|unique:users',
+            'phone_number'      =>  'required|min:10|numeric',
             'gender'            =>  'required',
             'sub_district_id'   =>  'required',
             'postal_code'       =>  'required|numeric',
             'full_address'      =>  'required',
-
+            'image'             =>  'required|file|max:5120',
+            'id_card_image'     =>  'required|file|max:5120',
+            'account_owner'     =>  'required',
+            'account_number'    =>  'required',
+            'bank_id'           =>  'required',
         ]);
+
+        $bankAccount = BankAccount::create([
+            'bank_id'           =>  $validatedData['bank_id'],
+            'account_owner'     =>  $validatedData['account_owner'],
+            'account_number'    =>  $validatedData['account_number']
+        ]);
+
+        if($request->image && $request->id_card_image != null)
+        {
+            $image = $request->file('image');
+            $validatedData['image'] = time().'.'.$image->extension();
+        
+            $destinationPath = public_path('/img/thumbnail');
+            $img = Image::make($image->path());
+            $img->resize(200, 300, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$validatedData['image']);
+    
+            $destinationPath = public_path('/img/profile-images');
+            $image->move($destinationPath, $validatedData['image']);
+
+            $image = $request->file('id_card_image');
+            $validatedData['id_card_image'] = time().'.'.$image->extension();
+        
+            $destinationPath = public_path('/img/thumbnail');
+            $img = Image::make($image->path());
+            $img->resize(1080, 720, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$validatedData['id_card_image']);
+    
+            $destinationPath = public_path('/img/id_card_image');
+            $image->move($destinationPath, $validatedData['id_card_image']);
+
+            if($bankAccount == true){
+                User::where('id', Auth::user()->id)->update([
+                'nik'               =>  $validatedData['nik'],
+                'phone_number'      =>  $validatedData['phone_number'],
+                'gender'            =>  $validatedData['gender'],
+                'sub_district_id'   =>  $validatedData['sub_district_id'],
+                'postal_code'       =>  $validatedData['postal_code'],
+                'full_address'      =>  $validatedData['full_address'],
+                'image'             =>  $validatedData['image'],
+                'id_card_image'     =>  $validatedData['id_card_image'],
+                'bank_account_id'   =>  $bankAccount->id,
+                'is_complete'       =>  1
+            ]);
+            }
+            return redirect('/dashboard');
+        }
+        return back();
     }
 
     public function forgotpassword()

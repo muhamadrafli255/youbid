@@ -22,7 +22,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 mx-0">
-                                                    <form id="msform" action="/complete-data" method="POST">
+                                                    <form id="msform" action="/complete-data" method="POST" enctype="multipart/form-data">
                                                         @csrf
                                                         <!-- progressbar -->
                                                         <ul id="progressbar" class="mx-auto">
@@ -93,17 +93,24 @@
                                                                 </div>
                                                                 <div class="col-12 form-group mb-3">
                                                                     <label class="font-weight-bold text-danger float-left" for="">Kode Pos</label>
-                                                                    <input type="text" class="form-control" placeholder="Masukkan Kode Pos">
+                                                                    <input type="text" name="postal_code" class="form-control @error('postal_code')
+                                                                        is-invalid
+                                                                    @enderror" placeholder="Masukkan Kode Pos" value="{{ old('postal_code') }}" required>
+                                                                    @error('postal_code')
+                                                                        <div class="invalid-feedback">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
                                                                 </div>
                                                                 <div class="col-12 form-group mb-3">
-                                                                    <label class="font-weight-bold text-danger float-left" for="">Alamat Lengkap</label>
-                                                                    <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                                                                    <label class="font-weight-bold text-danger float-left" for="full_address">Alamat Lengkap</label>
+                                                                    <textarea name="full_address" id=full_address" cols="30" rows="10" class="form-control" required>{{ old('full_address') }}</textarea>
                                                                 </div>
                                                                 <div class="col-12 mx-auto img-thumbnail mb-3">
                                                                     <img src="/img/undraw_profile.svg" class="img-preview img-fluid rounded-circle" height="100px" width="200px">
                                                                 </div>
                                                                 <div class="col-12 form-group mb-3">
-                                                                    <input type="file" class="form-control form-control-user" id="image" onchange="previewImage()">
+                                                                    <input type="file" name="image" class="form-control form-control-user" id="image" onchange="previewImage()">
                                                                     <label class="custom-file-label" for="image">Profile Image</label>
                                                                 </div>
                                                             </div>
@@ -115,12 +122,12 @@
                                                                 <div class="mx-auto">
                                                                     <div class="mb-4 d-flex justify-content-center align-items-center">
                                                                         <img src="https://disdukcapil.kamparkab.go.id/wp-content/uploads/2019/05/ktp.png"
-                                                                        alt="example placeholder" style="width: 300px;" />
+                                                                        class="img-preview-card" style="width: 300px;" />
                                                                     </div>
                                                                     <div class="d-flex justify-content-center">
                                                                         <div class="btn btn-danger btn-rounded">
-                                                                            <label class="form-label text-white m-1" for="customFile1">Choose file</label>
-                                                                            <input type="file" class="form-control d-none" id="customFile1" />
+                                                                            <label class="form-label text-white m-1" for="imageCard">Choose file</label>
+                                                                            <input type="file" name="id_card_image" class="form-control d-none" id="imageCard" onchange="previewImageCard()">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -134,21 +141,38 @@
                                                                 <h2 class="col-12 fs-title">Rekening Bank</h2>
                                                                 <div class="col-sm-6 form-group mb-3">
                                                                     <label class="font-weight-bold text-danger float-left" for="">Pemilik Rekening</label>
-                                                                    <input type="text" class="form-control">
+                                                                    <input type="text" name="account_owner" class="form-control @error('account_owner')
+                                                                        is-invalid
+                                                                    @enderror" placeholder="Masukkan Pemilik Rekening" value="{{ old('account_owner') }}" required>
+                                                                    @error('account_owner')
+                                                                        <div class="invalid-feedback">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
                                                                 </div>
                                                                 <div class="col-sm-6 form-group mb-3">
                                                                     <label class="font-weight-bold text-danger float-left" for="">Nomor Rekening</label>
-                                                                    <input type="text" class="form-control">
+                                                                    <input type="text" name="account_number" class="form-control @error('account_number')
+                                                                        is-invalid
+                                                                    @enderror" placeholder="Masukkan Nomor Rekening" value="{{ old('account_number') }}" required>
+                                                                    @error('account_number')
+                                                                        <div class="invalid-feedback">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
                                                                 </div>
                                                                 <div class="col-12 form-group mb-3">
-                                                                    <label class="font-weight-bold text-danger float-left" for="">Nama Bank</label>
-                                                                    <select name="" id="" class="form-control">
+                                                                    <label class="font-weight-bold text-danger float-left" for="bank">Nama Bank</label>
+                                                                    <select name="bank_id" id="bank" class="form-control">
                                                                         <option>Pilih Bank...</option>
+                                                                        @foreach ($banks as $bank)
+                                                                            <option value="{{ $bank->id }}">{{ $bank->name }}</option>
+                                                                        @endforeach
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                             <input type="button" name="previous" class="previous btn btn-secondary" value="Kembali"/>
-                                                            <input type="button" name="make_payment" class="next btn btn-danger" value="Kirim"/>
+                                                            <button type="submit" class="next btn btn-danger">Kirim</button>
                                                         </fieldset>
                                                     </form>
                                                 </div>

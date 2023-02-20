@@ -18,13 +18,13 @@ class CreateUsersTable extends Migration
             $table->foreignId('sub_district_id')->nullable();
             $table->foreignId('bank_account_id')->nullable();
             $table->string('uuid');
-            $table->integer('nik')->nullable();
+            $table->bigInteger('nik')->nullable();
             $table->string('full_name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->tinyInteger('gender')->nullable();
-            $table->string('phone_number')->nullable();
+            $table->bigInteger('phone_number')->nullable();
             $table->text('full_address')->nullable();
             $table->integer('postal_code')->nullable();
             $table->string('image')->nullable();
