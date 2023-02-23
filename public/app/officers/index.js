@@ -98,7 +98,7 @@ function deleteFunction(uuid, full_name) {
         },
         buttonsStyling: false
     }).fire({
-        html: `<h4>Status Jenis Akun</h4>
+        html: `<h4>Hapus Petugas</h4>
         <p class="mb-0">Apakah anda yakin ingin menghapus petugas ${full_name}?</p>`,
         showCancelButton: true,
         confirmButtonText: 'OK',

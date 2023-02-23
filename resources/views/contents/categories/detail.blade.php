@@ -80,7 +80,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    {{-- <th>Logo</th> --}}
+                                                    <th>Logo</th>
                                                     <th>Nama</th>
                                                     <th>Jumlah Model</th>
                                                     <th>Opsi</th>

@@ -105,13 +105,19 @@ class CategoryController extends Controller
     {
         $categories = Category::where('id', $id)->get();
         foreach($categories as $category)
-        // dd($category->image);
+        // dd($category->Brand->count());
+        if($category->Brand->count() != 0)
+        {
+            toast()->error('Gagal!', 'Kategori tidak bisa dihapus karena masih ada merk didalamnya!');
+            return redirect('/categories');
+        }else{
         $image_path = 'img/category-images/'.$category->image;
         $thumbnail_path = 'img/thumbnail/'.$category->image;
         unlink($image_path);
         unlink($thumbnail_path);
         Category::where('id', $id)->delete();
-        toast()->success('Berhasil', 'Kategori '.$category->name.' Berhasil Dihapus!');
+        toast()->success('Berhasil!', 'Kategori '.$category->name.' Berhasil Dihapus!');
         return redirect('/categories');
+        }
     }
 }

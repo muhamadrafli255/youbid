@@ -1,2 +1,3 @@
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-<link rel="stylesheet" href="http://cdn.datatables.net/responsive/1.0.2/css/dataTables.responsive.css"/>
+<link rel="stylesheet" href="/assets/plugins/DataTables/datatables.min.css">
+<link rel="stylesheet" href="/assets/plugins/DataTables/Buttons-2.3.4/css/buttons.bootstrap.min.css">
+<link rel="stylesheet" href="/assets/plugins/DataTables/Responsive-2.4.0/css/responsive.bootstrap.min.css">

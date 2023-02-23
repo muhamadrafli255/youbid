@@ -16,6 +16,7 @@ class Brand extends Model
         $brand = Brand::select([
             'id',
             'name',
+            'image',
         ]);
         if(isset($request['categoryId'])){
             $brand->where('category_id', $request['categoryId']);

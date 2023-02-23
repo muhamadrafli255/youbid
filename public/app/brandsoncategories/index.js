@@ -15,6 +15,13 @@ function initDatatable() {
                 }
             },
             {
+                data: 'image', name:'image', class:'text-center', orderable: false, searchable: false,
+                render: function(data, type, row){
+                        image = '<img class="img-fluid" src="/img/brand-images/'+ data +'" height="150" width="150" alt="">'; 
+                        return image;
+                    }
+            },
+            {
                 data: 'name', name: 'name', orderable: true, searchable: true
             },
             {

@@ -1,11 +1,10 @@
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
-<script type="text/javascript" language="javascript" src="//cdn.datatables.net/responsive/1.0.2/js/dataTables.responsive.js"></script>
+<script src="/assets/plugins/DataTables/datatables.min.js"></script>
+<script src="/assets/plugins/DataTables/Buttons-2.3.4/js/buttons.bootstrap.min.js"></script>
+<script src="/assets/plugins/DataTables/JSZip-2.5.0/jszip.min.js"></script>
+<script src="/assets/plugins/DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script src="/assets/plugins/DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.2/sweetalert2.css" integrity="sha512-us/9of/cEp3FrrmLUpCcWUAzm2gE7EOPnfEAWBMwdWR1Lpxw0orMoVvLyyoGSD9iMGAUlEd8XHzt5+SDwmdGLg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.2/sweetalert2.min.js" integrity="sha512-jSNGQoIZ0qago6DK45skZbDI1JC8bmANSwItgDnMXiAnJm0Lq6QB4yXY8QPKqS68iR3ngZi0pM5+wZvg1kCCKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
     $.extend(true, $.fn.dataTable.defaults, {
@@ -25,7 +24,7 @@
                 previous: '<i class="fas fa-arrow-left fa-fw"></i>'
             },
             processing: `<div class="h-100 d-flex flex-column align-items-center justify-content-center">
-                <div class="spinner-border text-primary mb-3" role="status"><span class="sr-only">Processing...</span></div>
+                <div class="spinner-border text-danger mb-3" role="status"><span class="sr-only">Processing...</span></div>
                 <span class="font-weight-semibold">Mohon Tunggu...</span>
             </div>`,
             search: '_INPUT_'

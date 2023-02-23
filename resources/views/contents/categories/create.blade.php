@@ -14,7 +14,7 @@
             <form action="/categories/create" method="POST" class="form-group" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                    <div class="col-11 mx-auto mb-3">
+                    <div class="col-12 mx-auto mb-3">
                         <label class="font-weight-bold text-danger" for="">Nama Kategori</label>
                         <input type="text" name="name" class="form-control @error('name')
                             is-invalid
