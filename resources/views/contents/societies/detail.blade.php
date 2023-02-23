@@ -1,34 +1,43 @@
 @extends('app.main')
 
 @section('content')
+@foreach ($societies as $society)
 <div class="container-fluid">
     <h1 class="h3 mb-2 text-gray-800">{{ $title }}</h1>
-    <p class="mb-4">Berikut adalah data masyarakat dengan nama <span class="text-danger">Eman Simatupang.</span></p>
+    <p class="mb-4">Berikut adalah data masyarakat dengan nama <span class="text-danger">{{ $society->full_name }}.</span></p>
 
     {{-- Card Information --}}
     <div class="row">
+        @if ($society->bank_account_id == null)
+        <div class="col-12">
+        @else
         <div class="col-lg-4 col-sm-12">
+        @endif
             <div class="card shadow mb-4">
                 <img class="m-2 mx-auto img-fluid rounded-circle border border-1 border-danger"
                     src="https://static.vecteezy.com/system/resources/thumbnails/004/607/791/small/man-face-emotive-icon-smiling-male-character-in-blue-shirt-flat-illustration-isolated-on-white-happy-human-psychological-portrait-positive-emotions-user-avatar-for-app-web-design-vector.jpg"
-                    height="200" width="200" alt="">
-                <h5 class="font-weight-bold text-danger text-center">Eman Simatupang</h5>
-                <h5 class="small text-center mb-4">emanganteng@gmail.com</h5>
+                    height="180" width="180" alt="">
+                <h5 class="font-weight-bold text-danger text-center">{{ $society->full_name }}</h5>
+                <h5 class="small text-center mb-4">{{ $society->email }}</h5>
             </div>
         </div>
+        @if ($society->bank_account_id == null)
+            
+        @else
         <div class="col-lg-8 col-sm-12">
             <div class="card shadow">
                 <div class="card-header">
                     <h6>Detail Bank</h6>
                 </div>
                 <img class="m-2 mx-auto img-fluid border"
-                    src="https://assets.pikiran-rakyat.com/crop/0x195:837x748/750x500/photo/2020/08/31/1352129040.jpg"
+                    src="{{ $society->BankAccount->Bank->image }}"
                     height="200" width="200" alt="">
-                <h5 class="font-weight-bold text-danger text-center">328901027873454</h5>
-                <h5 class="small text-center">Eman Simatupang</h5>
-                <h5 class="small text-center mb-3">Bank BRI</h5>
+                <h5 class="font-weight-bold text-danger text-center">{{ $society->BankAccount->account_number }}</h5>
+                <h5 class="small text-center">{{ $society->BankAccount->account_owner }}</h5>
+                <h5 class="small text-center mb-4">{{ $society->BankAccount->Bank->name }}</h5>
             </div>
         </div>
+        @endif
         <div class="col-12">
             <div class="card shadow mb-3 mt-3">
                 <div class="card-header">
@@ -43,7 +52,7 @@
                             :
                         </div>
                         <div class="col-7">
-                            <h6>283928038</h6>
+                            <h6>{{ $society->nik }}</h6>
                         </div>
                     </div>
                     <hr>
@@ -55,7 +64,7 @@
                             :
                         </div>
                         <div class="col-7">
-                            <h6>Eman Simatupang</h6>
+                            <h6>{{ $society->full_name }}</h6>
                         </div>
                     </div>
                     <hr>
@@ -67,7 +76,7 @@
                             :
                         </div>
                         <div class="col-7">
-                            <h6>emanganteng@gmail.com</h6>
+                            <h6>{{ $society->email }}</h6>
                         </div>
                     </div>
                     <hr>
@@ -79,7 +88,7 @@
                             :
                         </div>
                         <div class="col-7">
-                            <h6>0898989899</h6>
+                            <h6>0{{ $society->phone_number }}</h6>
                         </div>
                     </div>
                     <hr>
@@ -91,7 +100,11 @@
                             :
                         </div>
                         <div class="col-7">
+                            @if ($society->gender == 1)
                             <h6>Laki - Laki</h6>
+                            @else
+                            <h6>Perempuan</h6>
+                            @endif
                         </div>
                     </div>
                     <hr>
@@ -103,7 +116,7 @@
                             :
                         </div>
                         <div class="col-7">
-                            <h6>Kp. Ciganitri RW1 RT2</h6>
+                            <h6>{{ $society->full_address }}</h6>
                         </div>
                     </div>
                     <hr>
@@ -115,7 +128,7 @@
                             :
                         </div>
                         <div class="col-7">
-                            <h6>40289</h6>
+                            <h6>{{ $society->postal_code }}</h6>
                         </div>
                     </div>
                     <hr>
@@ -123,5 +136,6 @@
             </div>
         </div>
     </div>
+    @endforeach
 </div>
 @endsection

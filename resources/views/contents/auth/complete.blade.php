@@ -31,6 +31,7 @@
                                                             <li id="payment"><strong>Bank</strong></li>
                                                         </ul>
                                                         <!-- fieldsets -->
+                                                        @foreach ($users as $user)
                                                         <fieldset>
                                                             <div class="user row">
                                                                 <h2 class="fs-title col-12">Informasi Data Diri</h2>
@@ -38,7 +39,7 @@
                                                                     <label class="font-weight-bold text-danger float-left" for="">NIK</label>
                                                                     <input type="number" name="nik" class="form-control form-control-user @error('nik')
                                                                         is-invalid
-                                                                    @enderror" placeholder="Masukkan NIK" value="{{ old('nik') }}" required>
+                                                                    @enderror" placeholder="Masukkan NIK" value="@if($user->nik){{ $user->nik }}@else{{ old('nik') }}@endif" required>
                                                                     @error('nik')
                                                                         <div class="invalid-feedback">
                                                                             {{ $message }}
@@ -49,7 +50,7 @@
                                                                     <label class="font-weight-bold text-danger float-left" for="">No Telepon</label>
                                                                     <input type="number" name="phone_number" class="form-control form-control-user @error('phone_number')
                                                                         is-invalid
-                                                                    @enderror" placeholder="Masukkan No Telepon" value="{{ old('phone_number') }}" required>
+                                                                    @enderror" placeholder="Masukkan No Telepon" value="@if($user->phone_number){{ $user->phone_number }}@else{{ old('phone_number') }}@endif" required>
                                                                     @error('phone_number')
                                                                         <div class="invalid-feedback">
                                                                             {{ $message }}
@@ -57,9 +58,9 @@
                                                                     @enderror
                                                                 </div>
                                                                 <div class="col-12 form-group mb-3">
-                                                                    <label class="font-weight-bold text-danger float-left" for="gender">Jenis Kelamin</label>
+                                                                    <label class="font-weight-bold text-danger float-left" for=",gender">Jenis Kelamin</label>
                                                                     <select name="gender" id="gender" class="form-control">
-                                                                        <option>Pilih Jenis Kelamin...</option>
+                                                                        <option value="{{ $user->gender }}">@if($user->gender == 1) Laki - Laki @elseif($user->gender == 2) Perempuan @else Pilih Jenis Kelamin... @endif</option>
                                                                         <option value="1">Laki - Laki</option>
                                                                         <option value="2">Perempuan</option>
                                                                     </select>
@@ -95,7 +96,7 @@
                                                                     <label class="font-weight-bold text-danger float-left" for="">Kode Pos</label>
                                                                     <input type="text" name="postal_code" class="form-control @error('postal_code')
                                                                         is-invalid
-                                                                    @enderror" placeholder="Masukkan Kode Pos" value="{{ old('postal_code') }}" required>
+                                                                    @enderror" placeholder="Masukkan Kode Pos" value="@if($user->phone_number){{ $user->phone_number }}@else{{ old('phone_number') }}@endif" required>
                                                                     @error('postal_code')
                                                                         <div class="invalid-feedback">
                                                                             {{ $message }}
@@ -104,7 +105,7 @@
                                                                 </div>
                                                                 <div class="col-12 form-group mb-3">
                                                                     <label class="font-weight-bold text-danger float-left" for="full_address">Alamat Lengkap</label>
-                                                                    <textarea name="full_address" id=full_address" cols="30" rows="10" class="form-control" required>{{ old('full_address') }}</textarea>
+                                                                    <textarea name="full_address" id=full_address" cols="30" rows="10" class="form-control" required>@if($user->full_address){{ $user->full_address }}@else{{ old('full_address') }}@endif</textarea>
                                                                 </div>
                                                                 <div class="col-12 mx-auto img-thumbnail mb-3">
                                                                     <img src="/img/undraw_profile.svg" class="img-preview img-fluid rounded-circle" height="100px" width="200px">
@@ -174,6 +175,7 @@
                                                             <input type="button" name="previous" class="previous btn btn-secondary" value="Kembali"/>
                                                             <button type="submit" class="next btn btn-danger">Kirim</button>
                                                         </fieldset>
+                                                        @endforeach
                                                     </form>
                                                 </div>
                                             </div>

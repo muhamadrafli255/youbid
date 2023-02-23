@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function Brand()
+    {
+        return $this->hasMany(Brand::class);
+    }
+
+    public static function getCategories()
+    {
+        $categories = Category::select([
+            'id',
+            'name',
+            'image'
+        ]);
+        return $categories;
+    }
 }

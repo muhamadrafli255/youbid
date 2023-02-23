@@ -4,8 +4,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SocietyController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OfficerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,7 +57,7 @@ Route::group([
         Route::post('/', [AuthController::class, 'mailReset']);
     });
 
-    Route::prefix('reset-password')->group(function()
+    Route::prefix('create-password')->group(function()
     {
         Route::get('/{token}', [AuthController::class, 'resetPassword']);
         Route::post('/{token}', [AuthController::class, 'changePassword']);
@@ -99,6 +102,38 @@ Route::group([
     Route::prefix('societies')->group(function(){
         Route::get('/', [SocietyController::class, 'index']);
         Route::get('/create', [SocietyController::class, 'create']); 
-        Route::get('/{id}', [SocietyController::class, 'detail']);
+        Route::post('/create', [SocietyController::class, 'store']); 
+        Route::get('/{uuid}', [SocietyController::class, 'detail']);
+        Route::get('/{uuid}/edit', [SocietyController::class, 'edit']);
+        Route::post('/{uuid}/edit', [SocietyController::class, 'update']);
+        Route::get('/{uuid}/delete', [SocietyController::class, 'delete']);
+    });
+
+    Route::prefix('officers')->group(function(){
+        Route::get('/', [OfficerController::class, 'index']);
+        Route::get('/create', [OfficerController::class, 'create']); 
+        Route::post('/create', [OfficerController::class, 'store']); 
+        Route::get('/{uuid}', [OfficerController::class, 'detail']);
+        Route::get('/{uuid}/edit', [OfficerController::class, 'edit']);
+        Route::post('/{uuid}/edit', [OfficerController::class, 'update']);
+        Route::get('/{uuid}/delete', [OfficerController::class, 'delete']);
+    });
+
+    Route::prefix('categories')->group(function(){
+        Route::get('/', [CategoryController::class, 'index']);
+        Route::get('/create', [CategoryController::class, 'create']);
+        Route::post('/create', [CategoryController::class, 'store']);
+        Route::get('/{id}/brands', [CategoryController::class, 'detail']);
+        Route::get('/{id}/edit', [CategoryController::class, 'edit']);
+        Route::put('/{id}/edit', [CategoryController::class, 'update']);
+        Route::get('/{id}/delete', [CategoryController::class, 'delete']);
+    }); 
+
+    Route::prefix('brands')->group(function(){
+        Route::get('/', [BrandController::class, 'index']);
+        Route::get('/create', [BrandController::class, 'create']);
+        Route::post('/create', [BrandController::class, 'store']);
+        Route::get('/{id}/model', [BrandController::class, 'detail']);
+        Route::get('/{id}/edit', [BrandController::class, 'edit']);
     });
 });

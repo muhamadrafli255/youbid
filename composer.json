@@ -13,7 +13,9 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "ramsey/uuid": "^4.7",
-        "spatie/laravel-permission": "^5.9"
+        "realrashid/sweet-alert": "^6.0",
+        "spatie/laravel-permission": "^5.9",
+        "yajra/laravel-datatables-oracle": "^9.21.2"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

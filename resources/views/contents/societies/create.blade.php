@@ -4,86 +4,120 @@
     <div class="container-fluid">
                                 <!-- Page Heading -->
                                 <h1 class="h3 mb-2 text-gray-800">{{ $title }}</h1>
-                                <p class="mb-4">Berikut adalah formulir tambah data masyarakat dari <a href="/" class="text-danger">YouBID</a>.</p>
+                                <p class="mb-4">Berikut adalah formulir untuk mendaftarkan masyarakat ke dalam aplikasi <a href="/" class="text-danger">YouBID</a>.</p>
 
                                 <div class="card show mb-4">
                                     <div class="card-header">
-                                        <h6 class="text-danger">Form Tambah Masyarakat</h6>
+                                        <h6 class="text-danger font-weight-bold">Form Tambah Masyarakat</h6>
                                     </div>
                                     <div class="card-body">
-                                        <form action="" class="form-group">
+                                        <form action="/societies/create" method="POST" class="form-group">
+                                            @csrf
                                             <div class="row">
                                                 <div class="col-6 mb-3">
                                                     <label class="font-weight-bold text-danger" for="">NIK</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="number" name="nik" class="form-control @error('nik')
+                                                        is-invalid
+                                                    @enderror" value="{{ old('nik') }}" placeholder="Masukkan NIK" required>
+                                                    @error('nik')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="col-6 mb-3">
                                                     <label class="font-weight-bold text-danger" for="">Nama Lengkap</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" name="full_name" class="form-control @error('full_name')
+                                                        is-invalid
+                                                    @enderror" placeholder="Masukkan Nama Lengkap" value="{{ old('full_name') }}" required>
+                                                    @error('full_name')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="col-6 mb-3">
                                                     <label class="font-weight-bold text-danger" for="">Email</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="email" name="email"  class="form-control @error('email')
+                                                        is-invalid
+                                                    @enderror" placeholder="Masukkan Email" value="{{ old('email') }}" required>
+                                                    @error('email')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="col-6 mb-3">
                                                     <label class="font-weight-bold text-danger" for="">No Telepon</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="number" name="phone_number" class="form-control @error('phone_number')
+                                                        is-invalid
+                                                    @enderror" placeholder="Masukkan No Telepon" value="{{ old('phone_number') }}" required>
+                                                    @error('phone_number')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="col-12 mb-3">
                                                     <label class="font-weight-bold text-danger" for="">Jenis Kelamin</label>
-                                                    <select name="" id="" class="form-control">
+                                                    <select name="gender" id="" class="form-control">
                                                         <option>Pilih Jenis Kelamin...</option>
                                                         <option value="1">Laki - Laki</option>
                                                         <option value="2">Perempuan</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-6 mb-3">
-                                                    <label class="font-weight-bold text-danger" for="">Provinsi</label>
-                                                    <select name="" id="" class="form-control">
+                                                    <label class="font-weight-bold text-danger" for="province">Provinsi</label>
+                                                    <select name="province" id="province" class="form-control">
                                                         <option>Pilih Provinsi...</option>
-                                                        <option value="1">Jawa Barat</option>
-                                                        <option value="2">Jawa Tengah</option>
+                                                        @foreach ($provinces as $province)
+                                                            <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="col-6 mb-3">
-                                                    <label class="font-weight-bold text-danger" for="">Kabupaten / Kota</label>
-                                                    <select name="" id="" class="form-control">
+                                                    <label class="font-weight-bold text-danger" for="cities">Kabupaten / Kota</label>
+                                                    <select name="city" id="cities" class="form-control">
                                                         <option>Pilih Kota / Kabupaten...</option>
-                                                        <option value="1">Bandung</option>
-                                                        <option value="2">Cianjur</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-6 mb-3">
-                                                    <label class="font-weight-bold text-danger" for="">Kecamatan</label>
-                                                    <select name="" id="" class="form-control">
+                                                    <label class="font-weight-bold text-danger" for="districts">Kecamatan</label>
+                                                    <select name="district" id="districts" class="form-control">
                                                         <option>Pilih Kecamatan...</option>
-                                                        <option value="1">Katapang</option>
-                                                        <option value="2">Garut</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-6 mb-3">
-                                                    <label class="font-weight-bold text-danger" for="">Desa</label>
-                                                    <select name="" id="" class="form-control">
+                                                    <label class="font-weight-bold text-danger" for="sub_districts">Desa</label>
+                                                    <select name="sub_district_id" id="sub_districts" class="form-control">
                                                         <option>Pilih Desa...</option>
-                                                        <option value="1">Sukamukti</option>
-                                                        <option value="2">Sukamau</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-12 mb-3">
                                                     <label class="font-weight-bold text-danger" for="">Kode Pos</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="number" name="postal_code" class="form-control @error('postal_code')
+                                                        is-invalid
+                                                    @enderror" placeholder="Masukkan Kode Pos" value="{{ old('postal_code') }}" required>
+                                                    @error('postal_code')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="col-12 mb-3">
                                                     <label class="font-weight-bold text-danger" for="">Alamat Lengkap</label>
-                                                    <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                                                    <textarea name="full_address" id="" cols="30" rows="10" class="form-control @error('full_address')
+                                                        is-invalid
+                                                    @enderror">{{ old('full_address') }}</textarea>
                                                 </div>
                                                 <div class="col-12 text-right">
                                                     <a href="/societies" class="btn btn-secondary">Kembali</a>
-                                                    <a href="" class="btn btn-danger">Tambah</a>
+                                                    <button type="submit" class="btn btn-danger">Tambah</a>
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
     </div>
+    @include('components.scripts.selectchange')
 @endsection 

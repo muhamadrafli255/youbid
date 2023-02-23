@@ -50,14 +50,14 @@
             </div>
 
             <!-- Nav Item - Kategori -->
-            <li class="nav-item">
+            <li class="nav-item {{ Request::is('categories*') ? 'active' : '' }}">
                 <a class="nav-link" href="/categories">
                     <i class="fas fa-fw fa-tag"></i>
                     <span>Kategori</span></a>
             </li>
 
             <!-- Nav Item - Merk -->
-            <li class="nav-item">
+            <li class="nav-item {{ Request::is('brands*') ? 'active' : '' }}    ">
                 <a class="nav-link" href="/brands">
                     <i class="fas fa-fw fa-building"></i>
                     <span>Merk</span></a>
