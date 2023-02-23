@@ -80,4 +80,20 @@ class User extends Authenticatable
     
                 return $societies;
         }
+
+        public static function getOfficers($request)
+        {
+            $societies = User::select(
+                [
+                    'id',
+                    'uuid',
+                    'image',
+                    'nik',
+                    'full_name',
+                    'email',
+                    'is_complete',
+                ])->where('role_id', 2);
+    
+                return $societies;
+        }
 }

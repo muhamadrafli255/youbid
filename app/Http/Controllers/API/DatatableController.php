@@ -16,6 +16,12 @@ class DatatableController extends Controller
         return DataTables::of($data)->make(true);
     }
 
+    public function getOfficers(Request $request)
+    {
+        $data = \App\Models\User::getOfficers($request->query());
+        return DataTables::of($data)->make(true);
+    }
+
     public function getCategories(Request $request)
     {
         $data = \App\Models\Category::getCategories($request->query());

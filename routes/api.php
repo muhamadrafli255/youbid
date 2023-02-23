@@ -26,6 +26,7 @@ Route::group([
         'prefix' => 'datatables',
     ], function(){
         Route::get('/societies', [DatatableController::class, 'getSocieties']);
+        Route::get('/officers', [DatatableController::class, 'getOfficers']);
         Route::get('/categories', [DatatableController::class, 'getCategories']);
         Route::get('/brands', [DatatableController::class, 'getbrand']);
         Route::get('/brands/categories', [DatatableController::class, 'getBrandOnCategories']);

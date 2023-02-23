@@ -59,15 +59,20 @@
                                                                 </div>
                                                                 <div class="col-12 form-group mb-3">
                                                                     <label class="font-weight-bold text-danger float-left" for=",gender">Jenis Kelamin</label>
-                                                                    <select name="gender" id="gender" class="form-control">
-                                                                        <option value="{{ $user->gender }}">@if($user->gender == 1) Laki - Laki @elseif($user->gender == 2) Perempuan @else Pilih Jenis Kelamin... @endif</option>
-                                                                        <option value="1">Laki - Laki</option>
+                                                                    <select name="gender" id="gender" class="form-control" required>
+                                                                        @if ($user->gender == 1)
+                                                                        <option value="1" selected>Laki - Laki</option>
                                                                         <option value="2">Perempuan</option>
+                                                                        @else
+                                                                        <option value="2" selected>Perempuan</option>
+                                                                        <option value="1">Laki - Laki</option>    
+                                                                        @endif
+                                                                        <option>Jenis Kelamin...</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-sm-6 form-group mb-3">
                                                                     <label class="font-weight-bold text-danger float-left" for="">Provinsi</label>
-                                                                    <select name="province" id="province" class="form-control">
+                                                                    <select name="province" id="province" class="form-control" required>
                                                                         <option>Pilih Provinsi...</option>
                                                                         @foreach ($provinces as $province)
                                                                             <option value="{{ $province->id }}">{{ $province->name }}</option>
@@ -76,27 +81,34 @@
                                                                 </div>
                                                                 <div class="col-sm-6 form-group mb-3">
                                                                     <label class="font-weight-bold text-danger float-left" for="">Kabupaten / Kota</label>
-                                                                    <select name="city" id="cities" class="form-control">
+                                                                    <select name="city" id="cities" class="form-control" required>
                                                                         <option>Pilih Kabupaten / Kota...</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-sm-6 form-group mb-3">
                                                                     <label class="font-weight-bold text-danger float-left" for="">Kecamatan</label>
-                                                                    <select name="district" id="districts" class="form-control">
+                                                                    <select name="district" id="districts" class="form-control" required>
                                                                         <option>Pilih Kecamatan...</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-sm-6 form-group mb-3">
                                                                     <label class="font-weight-bold text-danger float-left" for="">Desa</label>
-                                                                    <select name="sub_district_id" id="sub_districts" class="form-control">
+                                                                    <select name="sub_district_id" id="sub_districts" class="form-control @error('sub_district_id')
+                                                                        is-invalid
+                                                                    @enderror" required>
                                                                         <option>Pilih Desa...</option>
                                                                     </select>
+                                                                    @error('sub_district_id')
+                                                                        <div class="invalid-feedback">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
                                                                 </div>
                                                                 <div class="col-12 form-group mb-3">
                                                                     <label class="font-weight-bold text-danger float-left" for="">Kode Pos</label>
                                                                     <input type="text" name="postal_code" class="form-control @error('postal_code')
                                                                         is-invalid
-                                                                    @enderror" placeholder="Masukkan Kode Pos" value="@if($user->phone_number){{ $user->phone_number }}@else{{ old('phone_number') }}@endif" required>
+                                                                    @enderror" placeholder="Masukkan Kode Pos" value="@if($user->postal_code){{ $user->postal_code }}@else{{ old('postal_code') }}@endif" required>
                                                                     @error('postal_code')
                                                                         <div class="invalid-feedback">
                                                                             {{ $message }}
@@ -111,8 +123,15 @@
                                                                     <img src="/img/undraw_profile.svg" class="img-preview img-fluid rounded-circle" height="100px" width="200px">
                                                                 </div>
                                                                 <div class="col-12 form-group mb-3">
-                                                                    <input type="file" name="image" class="form-control form-control-user" id="image" onchange="previewImage()">
-                                                                    <label class="custom-file-label" for="image">Profile Image</label>
+                                                                    <input type="file" name="image" class="form-control form-control-user" id="image" onchange="previewImage()" required>
+                                                                    <label class="custom-file-label @error('image')
+                                                                        is-invalid
+                                                                    @enderror" for="image">Profile Image</label>
+                                                                    @error('image')
+                                                                        <div class="invalid-feedback">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                             <input type="button" name="next" class="next btn btn-danger mt-4" value="Selanjutnya"/>
@@ -128,7 +147,14 @@
                                                                     <div class="d-flex justify-content-center">
                                                                         <div class="btn btn-danger btn-rounded">
                                                                             <label class="form-label text-white m-1" for="imageCard">Choose file</label>
-                                                                            <input type="file" name="id_card_image" class="form-control d-none" id="imageCard" onchange="previewImageCard()">
+                                                                            <input type="file" name="id_card_image" class="form-control d-none @error('id_card_image')
+                                                                            is-invalid
+                                                                            @enderror" id="imageCard" onchange="previewImageCard()" required>
+                                                                            @error('id_card_image')
+                                                                                <div class="invalid-feedback text-white">
+                                                                                    {{ $message }}
+                                                                                </div>
+                                                                            @enderror
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -164,16 +190,23 @@
                                                                 </div>
                                                                 <div class="col-12 form-group mb-3">
                                                                     <label class="font-weight-bold text-danger float-left" for="bank">Nama Bank</label>
-                                                                    <select name="bank_id" id="bank" class="form-control">
+                                                                    <select name="bank_id" id="bank" class="form-control @error('bank_id')
+                                                                        is-invalid
+                                                                    @enderror" required>
                                                                         <option>Pilih Bank...</option>
                                                                         @foreach ($banks as $bank)
                                                                             <option value="{{ $bank->id }}">{{ $bank->name }}</option>
                                                                         @endforeach
                                                                     </select>
+                                                                    @error('bank_id')
+                                                                        <div class="invalid-feedback">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                             <input type="button" name="previous" class="previous btn btn-secondary" value="Kembali"/>
-                                                            <button type="submit" class="next btn btn-danger">Kirim</button>
+                                                            <button type="submit" class="btn btn-danger">Kirim</button>
                                                         </fieldset>
                                                         @endforeach
                                                     </form>

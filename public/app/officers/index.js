@@ -4,9 +4,9 @@ $(function () {
 })
 
 function initDatatable() {
-    const dtSociety = renderDatatable(
-        '#dtSociety',
-        '/api/datatables/societies',
+    const dtOfficers = renderDatatable(
+        '#dtOfficers',
+        '/api/datatables/officers',
         [
             {
                 data: 'uuid', name: 'uuid', class: 'table-fit text-right', orderable: false, searchable: false,
@@ -50,10 +50,8 @@ function initDatatable() {
             
         ],
         function (data, type, row) {
-            var uuid    =   row.id;
-            var full_name = row.full_name;
             const status = row.is_complete
-            const path = 'societies/' + row.uuid
+            const path = 'officers/' + row.uuid
             let updateBtn = '',
             detailBtn = '',
             deleteBtn = ''
@@ -62,18 +60,17 @@ function initDatatable() {
                 detailBtn = '<a href="'+ path +'" class="btn btn-sm btn-outline-info" data-toggle="tooltip" data-placement="top" title="Detail"><i class="fas fa-fw fa-eye"></i></a>'
                 updateBtn = '<a href="'+ path +'/edit" class="btn btn-sm btn-outline-warning" data-toggle="tooltip" data-placement="top" title="Ubah"><i class="fas fa-fw fa-edit"></i></a>'
                 if(status === 1){
-                    deleteBtn = `<button onclick="updateStatus(${uuid}, '${row.full_name}')" class="btn btn-sm btn-outline-success" data-toggle="tooltip" data-placement="top" title="Verifikasi"><i class="fas fa-fw fa-check"></i></button>`
+                    deleteBtn = `<button onclick="updateStatus(${row.id}, '${row.full_name}')" class="btn btn-sm btn-outline-success" data-toggle="tooltip" data-placement="top" title="Verifikasi"><i class="fas fa-fw fa-check"></i></button>`
                 }else if(status === 2){
-                    deleteBtn = `<button onclick="deleteFunction(${uuid}, '${row.full_name}')" class="btn btn-sm btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fas fa-fw fa-trash"></i></button>`
+                    deleteBtn = `<button onclick="deleteFunction(${row.id}, '${row.full_name}')" class="btn btn-sm btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fas fa-fw fa-trash"></i></button>`
                 }else{
-                    deleteBtn = `<button onclick="deleteFunction(${uuid}, '${row.full_name}')" class="btn btn-sm btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fas fa-fw fa-trash"></i></button>`
+                    deleteBtn = `<button onclick="deleteFunction(${row.id}, '${row.full_name}')" class="btn btn-sm btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fas fa-fw fa-trash"></i></button>`
                 }
             // } 
 
             content = detailBtn +' '+ updateBtn + ' '+ deleteBtn
 
             return content
-            console.log(full_name)
         },
         
         [[ 1, 'asc' ]],
@@ -85,11 +82,11 @@ function initDatatable() {
         },
     )
 
-    setDatatableLengthField(dtSociety, $('#dtSociety').parents('.dt-container').find('.dt-length'))
-    setDatatableFilterField(dtSociety, $('#dtSociety').parents('.dt-container').find('.dt-search'))
-    setDatatablePrintButton(dtSociety, $('#dtSociety').parents('.dt-container').find('.dt-print'))
-    setDatatableExcelButton(dtSociety, $('#dtSociety').parents('.dt-container').find('.dt-excel'))
-    setDatatablePdfButton(dtSociety, $('#dtSociety').parents('.dt-container').find('.dt-pdf'))
+    setDatatableLengthField(dtOfficers, $('#dtOfficers').parents('.dt-container').find('.dt-length'))
+    setDatatableFilterField(dtOfficers, $('#dtOfficers').parents('.dt-container').find('.dt-search'))
+    setDatatablePrintButton(dtOfficers, $('#dtOfficers').parents('.dt-container').find('.dt-print'))
+    setDatatableExcelButton(dtOfficers, $('#dtOfficers').parents('.dt-container').find('.dt-excel'))
+    setDatatablePdfButton(dtOfficers, $('#dtOfficers').parents('.dt-container').find('.dt-pdf'))
 }
 
 function deleteFunction(uuid, full_name) {
@@ -101,15 +98,15 @@ function deleteFunction(uuid, full_name) {
         },
         buttonsStyling: false
     }).fire({
-        html: `<h4>Hapus Masyarakat</h4>
-        <p class="mb-0">Apakah anda yakin ingin menghapus masyarakat ${full_name}?</p>`,
+        html: `<h4>Status Jenis Akun</h4>
+        <p class="mb-0">Apakah anda yakin ingin menghapus petugas ${full_name}?</p>`,
         showCancelButton: true,
         confirmButtonText: 'OK',
         cancelButtonText: 'Batal'
     }).then((result) => {
         if (result.isConfirmed) {
             $('body').append(`
-                <form action="societies/${uuid}/delete" method="get" class="d-none" id="delete">
+                <form action="officers/${uuid}/delete" method="get" class="d-none" id="delete">
                 </form>
             `)
 
@@ -135,7 +132,7 @@ function updateStatus(uuid, full_name) {
     }).then((result) => {
         if (result.isConfirmed) {
             $('body').append(`
-                <form action="societies/${uuid}/verify" method="get" class="d-none" id="updateStatus">
+                <form action="officers/${uuid}/verify" method="get" class="d-none" id="updateStatus">
                 </form>
             `)
 

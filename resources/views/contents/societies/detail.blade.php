@@ -132,6 +132,22 @@
                         </div>
                     </div>
                     <hr>
+                    <div class="row">
+                        <div class="col-4">
+                            <h6 class="font-weight-bold">Foto KTP</h6>
+                        </div>
+                        <div class="col-1">
+                            :
+                        </div>
+                        <div class="col-7">
+                            @if ($society->image == null)
+                                <img src="https://disdukcapil.kamparkab.go.id/wp-content/uploads/2019/05/ktp.png" height="280" width="420">
+                            @else
+                            <img src="/img/id_card_image/{{ $society->id_card_image }}" height="280" width="420">
+                            @endif
+                        </div>
+                    </div>
+                    <hr>
                 </div>
             </div>
         </div>

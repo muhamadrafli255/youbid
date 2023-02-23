@@ -151,13 +151,13 @@ class AuthController extends Controller
     public function sendCompleteData(Request $request)
     {
         $validatedData = $request->validate([
-            'nik'               =>  'required|max:16|unique:users',
+            'nik'               =>  'required|max:16',
             'phone_number'      =>  'required|min:10|numeric',
             'gender'            =>  'required',
             'sub_district_id'   =>  'required',
             'postal_code'       =>  'required|numeric',
             'full_address'      =>  'required',
-            'image'             =>  'required|file|max:5120',
+            'image'             =>  'file|max:5120',
             'id_card_image'     =>  'required|file|max:5120',
             'account_owner'     =>  'required',
             'account_number'    =>  'required',
@@ -196,9 +196,10 @@ class AuthController extends Controller
             $destinationPath = public_path('/img/id_card_image');
             $image->move($destinationPath, $validatedData['id_card_image']);
 
-            if($bankAccount == true){
+            $cekNik = User::where('nik', $validatedData['nik'])->get();
+            foreach($cekNik as $data)
+            if($bankAccount == true && $data->nik == $validatedData['nik']){
                 User::where('id', Auth::user()->id)->update([
-                'nik'               =>  $validatedData['nik'],
                 'phone_number'      =>  $validatedData['phone_number'],
                 'gender'            =>  $validatedData['gender'],
                 'sub_district_id'   =>  $validatedData['sub_district_id'],
@@ -207,8 +208,21 @@ class AuthController extends Controller
                 'image'             =>  $validatedData['image'],
                 'id_card_image'     =>  $validatedData['id_card_image'],
                 'bank_account_id'   =>  $bankAccount->id,
-                'is_complete'       =>  2
+                'is_complete'       =>  1
             ]);
+            }elseif($bankAccount == true){
+                User::where('id', Auth::user()->id)->update([
+                    'nik'               =>  $validatedData['nik'],
+                    'phone_number'      =>  $validatedData['phone_number'],
+                    'gender'            =>  $validatedData['gender'],
+                    'sub_district_id'   =>  $validatedData['sub_district_id'],
+                    'postal_code'       =>  $validatedData['postal_code'],
+                    'full_address'      =>  $validatedData['full_address'],
+                    'image'             =>  $validatedData['image'],
+                    'id_card_image'     =>  $validatedData['id_card_image'],
+                    'bank_account_id'   =>  $bankAccount->id,
+                    'is_complete'       =>  1
+                ]);
             }
             return redirect('/dashboard');
         }

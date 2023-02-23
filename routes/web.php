@@ -107,6 +107,7 @@ Route::group([
         Route::get('/{uuid}/edit', [SocietyController::class, 'edit']);
         Route::post('/{uuid}/edit', [SocietyController::class, 'update']);
         Route::get('/{uuid}/delete', [SocietyController::class, 'delete']);
+        Route::get('/{uuid}/verify', [SocietyController::class, 'verify']);
     });
 
     Route::prefix('officers')->group(function(){
@@ -117,6 +118,7 @@ Route::group([
         Route::get('/{uuid}/edit', [OfficerController::class, 'edit']);
         Route::post('/{uuid}/edit', [OfficerController::class, 'update']);
         Route::get('/{uuid}/delete', [OfficerController::class, 'delete']);
+        Route::get('/{uuid}/verify', [OfficerController::class, 'verify']);
     });
 
     Route::prefix('categories')->group(function(){

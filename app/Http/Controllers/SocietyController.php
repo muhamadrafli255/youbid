@@ -132,8 +132,20 @@ class SocietyController extends Controller
 
     public function delete($uuid)
     {
-        User::where('uuid', $uuid)->delete();
+        User::where('id', $uuid)->delete();
         toast()->success('Berhasil','Masyarakat Berhasil Dihapus!');
+        return redirect('/societies');
+    }
+
+    public function verify($uuid)
+    {
+        User::where('id', $uuid)->update([
+            'is_complete'   =>  2
+        ]);
+
+        $users = User::where('id', $uuid)->get();
+        foreach($users as $user)
+        toast()->success('Berhasil', 'Masyarakat '.$user->full_name.' Berhasil Diverifikasi!');
         return redirect('/societies');
     }
 }

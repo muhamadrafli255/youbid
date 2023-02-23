@@ -2,13 +2,149 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
+use App\Models\User;
+use App\Models\District;
+use App\Models\Province;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class OfficerController extends Controller
 {
     public function index()
     {
         $title = "Daftar Petugas";
-        return view('');
+        return view('contents.officers.index', compact('title'));
+    }
+
+    public function detail($uuid)
+    {
+        // dd($uuid);
+        $title = "Detail Petugas";
+        $societies  =  User::where('uuid', $uuid)->get();
+        return view('contents.officers.detail', compact('title', 'societies'));
+    }
+
+    public function create()
+    {
+        $title = "Tambah Petugas";
+        $provinces = Province::get();
+        return view('contents.officers.create', compact('title', 'provinces'));
+    }
+
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'nik'               =>  'required|max:16|unique:users',
+            'full_name'         =>  'required',
+            'email'             =>  'required|email:dns',
+            'phone_number'      =>  'required|min:10|numeric',
+            'gender'            =>  'required',
+            'sub_district_id'   =>  'required',
+            'postal_code'       =>  'required|numeric',
+            'full_address'      =>  'required',
+        ]);
+        
+        $user = User::create([
+            'nik'               =>  $validatedData['nik'],
+            'full_name'         =>  $validatedData['full_name'],
+            'email'             =>  $validatedData['email'],
+            'phone_number'      =>  $validatedData['phone_number'],
+            'gender'            =>  $validatedData['gender'],
+            'sub_district_id'   =>  $validatedData['sub_district_id'],
+            'postal_code'       =>  $validatedData['postal_code'],
+            'full_address'      =>  $validatedData['full_address'],
+            'password'          =>  Hash::make(Str::random(16)),
+            'email_verified_at' =>  Carbon::now(),
+            'role_id'           =>  2,
+        ]);
+
+        $user->assignRole('officer');
+
+        $generateToken = Str::random(16);
+        DB::table('password_resets')->insert([
+            'email' =>  $user['email'],
+            'token' =>  $generateToken
+        ]);
+        
+        Mail::send('contents.mail.createpassword', ['token' => $generateToken, 'name' => $user->full_name], function($message) use($request){
+            $message->to($request->email)->subject('Buat Password Akun Youbid!');
+        });
+
+        toast()->success('Berhasil','Petugas '.$user->full_name.' Berhasil Ditambahkan!');
+        return redirect('/officers');
+    }
+
+    public function edit($uuid)
+    {
+        $title      =  'Edit Petugas';
+        $societies  =  User::where('uuid', $uuid)->get();
+        $province_select   =  Province::get();
+        foreach($societies as $society){
+        $districts   = District::where('id', $society->SubDistrict->district_id)->get();
+        }
+        foreach($districts as $district){
+            $cities = City::where('id', $district->city_id)->get();
+        }
+        foreach($cities as $city){
+            $provinces = Province::where('id', $city->province_id)->get();
+        }
+        return view('contents.officers.edit', compact('title', 'societies','provinces', 'province_select', 'cities', 'districts'));
+    }
+
+    public function update(Request $request, $uuid)
+    {
+        $validatedData = $request->validate([
+            'nik'               =>  'required|max:16',
+            'full_name'         =>  'required',
+            'email'             =>  'required|email:dns',
+            'phone_number'      =>  'required|min:10|numeric',
+            'gender'            =>  'required',
+            'sub_district_id'   =>  'required',
+            'postal_code'       =>  'required|numeric',
+            'full_address'      =>  'required',
+        ]);
+
+        $societies = User::where('uuid', $uuid)->get();
+        foreach($societies as $society)
+        if($request->full_name == $society->full_name)
+        {
+            User::where('uuid', $uuid)->update([
+                'full_name'         =>  $validatedData['full_name'],
+                'email'             =>  $validatedData['email'],
+                'phone_number'      =>  $validatedData['phone_number'],
+                'gender'            =>  $validatedData['gender'],
+                'sub_district_id'   =>  $validatedData['sub_district_id'],
+                'postal_code'       =>  $validatedData['postal_code'],
+                'full_address'      =>  $validatedData['full_address']
+            ]);
+        }else{
+            User::where('uuid', $uuid)->update($validatedData);
+        }
+        toast()->success('Berhasil','Petugas '.$request->full_name.' Berhasil Dirubah!');    
+        return redirect('/officers');
+    }
+
+    public function delete($uuid)
+    {
+        User::where('id', $uuid)->delete();
+        toast()->success('Berhasil','Petugas Berhasil Dihapus!');
+        return redirect('/officers');
+    }
+
+    public function verify($uuid)
+    {
+        User::where('id', $uuid)->update([
+            'is_complete'   =>  2
+        ]);
+
+        $users = User::where('id', $uuid)->get();
+        foreach($users as $user)
+        toast()->success('Berhasil', 'Petugas '.$user->full_name.' Berhasil Diverifikasi!');
+        return redirect('/officers');
     }
 }
