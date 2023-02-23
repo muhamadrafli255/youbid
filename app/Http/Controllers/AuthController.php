@@ -4,16 +4,18 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Bank;
-use App\Models\BankAccount;
 use App\Models\User;
 use App\Models\Province;
+use App\Models\BankAccount;
 use Illuminate\Support\Str;
 use App\Models\UserActivate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Intervention\Image\Facades\Image;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
@@ -38,7 +40,7 @@ class AuthController extends Controller
             'password'  =>  Hash::make($validatedData['confirm_password']),
         ]);
 
-        $data->assignRole('user');
+        $data->assignRole('society');
 
         if($data == true)
         {
@@ -82,7 +84,7 @@ class AuthController extends Controller
             if($check['email_verified_at'] == null) {
                 $request->session()->regenerate();
                 return redirect()->intended('/resend-activation');
-            }else if ($check['is_complete'] == 0) {
+            }else if ($check['is_complete'] == 0 && 1) {
                 $request->session()->regenerate();
                 return redirect()->intended('/complete-data');
             }else{
@@ -91,7 +93,7 @@ class AuthController extends Controller
             }
             
         }else{
-            return redirect('/login');
+            return redirect('/login')->with('failed', 'Email Atau Kata Sandi Salah!');
         }
     }
 
@@ -104,7 +106,7 @@ class AuthController extends Controller
         if($data->token == $mytoken){
             return view('contents.auth.activation', compact('title', 'mytoken'));
         }
-            return abort(401);
+            return abort(404);
     }
 
     public function activate(Request $request)
@@ -140,9 +142,10 @@ class AuthController extends Controller
     public function completeData()
     {
         $title = "Lengkapi Data";
+        $users = User::where('id', Auth::user()->id)->get();
         $provinces = Province::get();
         $banks  = Bank::get();
-        return view('contents.auth.complete', compact('title', 'provinces', 'banks'));
+        return view('contents.auth.complete', compact('title', 'provinces', 'banks', 'users'));
     }
 
     public function sendCompleteData(Request $request)
@@ -204,7 +207,7 @@ class AuthController extends Controller
                 'image'             =>  $validatedData['image'],
                 'id_card_image'     =>  $validatedData['id_card_image'],
                 'bank_account_id'   =>  $bankAccount->id,
-                'is_complete'       =>  1
+                'is_complete'       =>  2
             ]);
             }
             return redirect('/dashboard');
@@ -212,10 +215,65 @@ class AuthController extends Controller
         return back();
     }
 
-    public function forgotpassword()
+    public function forgotPassword()
     {
         $title = "Lupa Password";
         return view('contents.auth.forgotpassword', compact('title'));
+    }
+
+    public function mailReset(Request $request)
+    {
+        $validatedData = $request->validate([
+            'email' => 'required|email:dns'
+        ]);
+
+        $checkData = User::where('email', $validatedData['email'])->get();
+        foreach($checkData as $data)
+        if($data['email'] != null)
+        {
+        $generateToken = Str::random(16);
+        DB::table('password_resets')->insert([
+            'email' =>  $validatedData['email'],
+            'token' =>  $generateToken
+        ]);
+
+        Mail::send('contents.mail.resetpassword', ['token' => $generateToken, 'name' => $data->full_name], function($message) use($request){
+            $message->to($request->email)->subject('Atur Ulang Password Akun Youbid!');
+        });
+
+        return redirect('/login')->with('success', 'Tautan Atur Ulang Password Berhasil Dikirim Silahkan Cek Email Anda!');
+
+        }
+        return back()->with('failed', 'Email Tidak Terdaftar!');
+    }
+
+    public function resetPassword($token)
+    {
+        $title = "Ubah Password";
+        $myToken = $token;
+        $getData = DB::table('password_resets')->where('token', $token)->get();
+        foreach($getData as $data)
+        if($data->token == $myToken)
+        {
+            return view('contents.auth.resetpassword', compact('title','myToken'));
+        }
+        return abort(404);
+    }
+
+    public function changePassword(Request $request, $myToken)
+    {
+        $validatedData = $request->validate([
+            'password'          =>  'required|min:8',
+            'confirm_password'  =>  'same:password'
+        ]);
+
+        $getData = DB::table('password_resets')->where('token', $myToken)->get();
+        foreach($getData as $data)
+        User::where('email', $data->email)->update([
+            'password'  =>  Hash::make($validatedData['confirm_password'])
+        ]);
+        DB::table('password_resets')->where('email', $data->email)->delete();
+        return redirect('/login')->with('success', 'Password Berhasil Diatur Ulang, Silahkan Login!');
     }
 
     public function logout(Request $request)

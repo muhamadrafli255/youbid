@@ -22,7 +22,7 @@
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
-
+@include('sweetalert::alert')
 <body class="bg-gradient-danger">
 
     <div class="container">

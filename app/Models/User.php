@@ -43,6 +43,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function BankAccount()
+    {
+        return $this->belongsTo(BankAccount::class);
+    }
+
     protected static function boot()
     {
         parent::boot();
@@ -53,5 +58,26 @@ class User extends Authenticatable
                 abort(500, $e->getMessage());
             }
         });
+        }
+
+        public function SubDistrict()
+        {
+            return $this->belongsTo(SubDistrict::class);
+        }
+
+        public static function getSocieties($request)
+        {
+            $societies = User::select(
+                [
+                    'id',
+                    'uuid',
+                    'image',
+                    'nik',
+                    'full_name',
+                    'email',
+                    'is_complete',
+                ])->where('role_id', 3);
+    
+                return $societies;
         }
 }

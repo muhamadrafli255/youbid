@@ -17,7 +17,7 @@ class CreateBankAccountsTable extends Migration
             $table->id();
             $table->foreignId('bank_id');
             $table->string('account_owner');
-            $table->integer('account_number');
+            $table->bigInteger('account_number');
             $table->timestamps();
         });
     }

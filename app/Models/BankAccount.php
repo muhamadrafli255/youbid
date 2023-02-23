@@ -15,4 +15,9 @@ class BankAccount extends Model
     {
         return $this->belongsTo(Bank::class);
     }
+
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
