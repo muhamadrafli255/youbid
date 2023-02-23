@@ -40,7 +40,7 @@ function initDatatable() {
                 // }else{
                     detailBtn = '<a href="'+ path +'/models" class="btn btn-sm btn-outline-info" data-toggle="tooltip" data-placement="top" title="Detail"><i class="fas fa-fw fa-eye"></i></a>'
                     updateBtn = '<a href="'+ path +'/edit" class="btn btn-sm btn-outline-warning" data-toggle="tooltip" data-placement="top" title="Ubah"><i class="fas fa-fw fa-edit"></i></a>'
-                    deleteBtn = '<a href="'+ path +'/delete" class="btn btn-sm btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fas fa-fw fa-trash"></i></a>'
+                    deleteBtn = `<button onclick="deleteFunction(${row.id}, '${row.name}')" class="btn btn-sm btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fas fa-fw fa-trash"></i></a>`
                 // }
 
             content = detailBtn +' '+ updateBtn + ' '+ deleteBtn
@@ -62,4 +62,29 @@ function initDatatable() {
     setDatatablePrintButton(dtBrand, $('#dtBrand').parents('.dt-container').find('.dt-print'))
     setDatatableExcelButton(dtBrand, $('#dtBrand').parents('.dt-container').find('.dt-excel'))
     setDatatablePdfButton(dtBrand, $('#dtBrand').parents('.dt-container').find('.dt-pdf'))
+}
+function deleteFunction(id, name) {
+    Swal.mixin({
+        icon: 'warning',
+        customClass: {
+            confirmButton: 'btn btn-danger waves-effect waves-light mr-2',
+            cancelButton: 'btn btn-default waves-effect waves-light'
+        },
+        buttonsStyling: false
+    }).fire({
+        html: `<h4>Hapus Merk</h4>
+        <p class="mb-0">Apakah anda yakin ingin menghapus merk ${name}?</p>`,
+        showCancelButton: true,
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $('body').append(`
+                <form action="brands/${id}/delete" method="get" class="d-none" id="delete">
+                </form>
+            `)
+
+            $('#delete').trigger('submit')
+        }
+    })
 }

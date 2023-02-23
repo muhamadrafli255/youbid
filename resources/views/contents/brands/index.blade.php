@@ -5,7 +5,7 @@
     @endsection
 
     @section('script')
-        @include('components.scripts.datatable')
+        @include('components.scripts.dtcategory')
         @include('components.scripts.momentjs')
         <script src="/app/brand/index.js"></script>
     @endsection

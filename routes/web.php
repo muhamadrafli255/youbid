@@ -135,7 +135,9 @@ Route::group([
         Route::get('/', [BrandController::class, 'index']);
         Route::get('/create', [BrandController::class, 'create']);
         Route::post('/create', [BrandController::class, 'store']);
-        Route::get('/{id}/model', [BrandController::class, 'detail']);
+        Route::get('/{id}/models', [BrandController::class, 'detail']);
         Route::get('/{id}/edit', [BrandController::class, 'edit']);
+        Route::put('/{id}/edit', [BrandController::class, 'update']);
+        Route::get('/{id}/delete', [BrandController::class, 'delete']);
     });
 });

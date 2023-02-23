@@ -87,6 +87,13 @@ class CategoryController extends Controller
             $destinationPath = public_path('/img/category-images');
             $image->move($destinationPath, $validatedData['image']);
 
+            $getCategory = Category::where('id', $id)->get();
+            foreach($getCategory as $category)
+            $imagePath = 'img/category-images/'.$category->image;
+            $thumbnailPath = 'img/thumbnail/'.$category->image;
+            unlink($imagePath);
+            unlink($thumbnailPath);
+
             Category::where('id', $id)->update([
                 'name'  =>  $validatedData['name'],
                 'image' =>  $validatedData['image']

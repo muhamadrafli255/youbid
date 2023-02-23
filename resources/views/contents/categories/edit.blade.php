@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">{{ $title }}</h1>
-    <p class="mb-4">Berikut adalah formulir untuk mendaftarkan kategori ke dalam aplikasi <a href="/" class="text-danger">YouBID</a>.</p>
+    <p class="mb-4">Berikut adalah formulir untuk mengubah kategori pada aplikasi <a href="/" class="text-danger">YouBID</a>.</p>
 
     <div class="card show mb-4">
         <div class="card-header">

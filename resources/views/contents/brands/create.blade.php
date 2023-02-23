@@ -48,7 +48,7 @@
                         @enderror
                     </div>
                     <div class="col-12 text-right">
-                        <a href="/categories" class="btn btn-secondary">Kembali</a>
+                        <a href="/brands" class="btn btn-secondary">Kembali</a>
                         <button type="submit" class="btn btn-danger">Tambah</a>
                     </div>
                 </div>
