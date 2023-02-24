@@ -57,14 +57,14 @@
             </li>
 
             <!-- Nav Item - Merk -->
-            <li class="nav-item {{ Request::is('brands*') ? 'active' : '' }}    ">
+            <li class="nav-item {{ Request::is('brands*') ? 'active' : '' }}">
                 <a class="nav-link" href="/brands">
                     <i class="fas fa-fw fa-building"></i>
                     <span>Merk</span></a>
             </li>
 
             <!-- Nav Item - Model -->
-            <li class="nav-item">
+            <li class="nav-item {{ Request::is('models*') ? 'active' : '' }}">
                 <a class="nav-link" href="/models">
                     <i class="fas fa-fw fa-motorcycle"></i>
                     <span>Model</span></a>

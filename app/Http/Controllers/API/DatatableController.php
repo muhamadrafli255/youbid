@@ -53,4 +53,12 @@ class DatatableController extends Controller
             return $data->Item->count();
         })->make(true);
     }
+
+    public function getModels(Request $request)
+    {
+        $data = \App\Models\ItemModel::getModels($request->query());
+        return DataTables::of($data)->addColumn('quantity_items', function($data){
+            return $data->Item->count();
+        })->make(true);
+    }
 }

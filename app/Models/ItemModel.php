@@ -33,4 +33,15 @@ class ItemModel extends Model
         }
         return $Models;
     }
+
+    public static function getModels($request)
+    {
+        $Models =   ItemModel::select([
+            'id',
+            'name',
+            'production_year',
+        ]);
+
+        return $Models;
+    }
 }
