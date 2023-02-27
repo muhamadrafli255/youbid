@@ -17,9 +17,11 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->foreignId('item_model_id');
             $table->foreignId('detail_item_id');
-            $table->foreignId('grade_item_id');
-            $table->foreignId('image_item_id');
+            $table->foreignId('grade_item_id')->nullable();
             $table->string('name');
+            $table->text('description');
+            $table->foreignId('created_by');
+            $table->foreignId('update_by')->nullable();
             $table->timestamps();
         });
     }

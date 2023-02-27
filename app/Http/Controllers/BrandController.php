@@ -27,7 +27,7 @@ class BrandController extends Controller
         $validatedData = $request->validate([
             'name'          =>  'required',
             'category_id'   =>  'required',
-            'image'         =>  'required'
+            'image'         =>  'required|image|max:5120'
         ]);
 
         if($request->image != null)
@@ -72,6 +72,7 @@ class BrandController extends Controller
     {
         $validatedData = $request->validate([
             'name'  =>  'required',
+            'image' =>  'required|image|max:5120'
         ]);
 
         if($request->image != null)

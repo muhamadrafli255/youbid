@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGradeItemsTable extends Migration
+class CreateItemImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateGradeItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('grade_items', function (Blueprint $table) {
+        Schema::create('item_images', function (Blueprint $table) {
             $table->id();
-            $table->string('interior');
-            $table->string('exterior');
-            $table->string('machine');
-            $table->string('chassis');
+            $table->foreignId('item_id');
+            $table->string('image_name');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateGradeItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('grade_items');
+        Schema::dropIfExists('item_images');
     }
 }

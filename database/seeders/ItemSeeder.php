@@ -15,7 +15,11 @@ class ItemSeeder extends Seeder
     public function run()
     {
         Item::create([
-            ''
+            'item_model_id'     =>  1,
+            'detail_item_id'    =>  1,
+            'name'              =>  'Aerox 2020 VVA',
+            'description'       =>  'Aerox 2020 VVA Warna Biru Surat Komplit',
+            'created_by'        =>  1,
         ]);
     }
 }

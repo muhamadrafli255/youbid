@@ -64,7 +64,7 @@ class ItemModelController extends Controller
         // dd($category->Brand->count());
         if($model->Item->count() != 0)
         {
-            toast()->error('Gagal!', 'Model tidak bisa dihapus karena masih ada merk didalamnya!');
+            toast()->error('Gagal!', 'Model tidak bisa dihapus karena masih ada barang didalamnya!');
             return redirect('/models');
         }else{
         ItemModel::where('id', $id)->delete();

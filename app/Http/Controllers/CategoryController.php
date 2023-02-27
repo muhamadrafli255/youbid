@@ -71,6 +71,7 @@ class CategoryController extends Controller
     {
         $validatedData = $request->validate([
             'name'  =>  'required',
+            'image' =>  'required|image|max:5120'
         ]);
 
         if($request->image != null)

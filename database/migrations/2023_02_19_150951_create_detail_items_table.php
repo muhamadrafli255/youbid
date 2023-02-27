@@ -28,7 +28,6 @@ class CreateDetailItemsTable extends Migration
             $table->tinyInteger('book_vehicle_owner');
             $table->tinyInteger('invoice');
             $table->tinyInteger('receipt');
-            $table->tinyInteger('release_letter');
             $table->tinyInteger('owner_identity');
             $table->timestamps();
         });

@@ -90,6 +90,7 @@ class UserSeeder extends Seeder
                         'postal_code'       =>  '40921',
                         'bank_account_id'   =>  4,
                         'is_complete'       =>  2,
+                        'role_id'           =>  3
                     ]
                     );
                     $member->assignRole('society');

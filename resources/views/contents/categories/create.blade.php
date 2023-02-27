@@ -6,7 +6,7 @@
     <h1 class="h3 mb-2 text-gray-800">{{ $title }}</h1>
     <p class="mb-4">Berikut adalah formulir untuk mendaftarkan kategori ke dalam aplikasi <a href="/" class="text-danger">YouBID</a>.</p>
 
-    <div class="card show mb-4">
+    <div class="card shadow mb-4">
         <div class="card-header">
             <h6 class="text-danger font-weight-bold">Form Tambah Kategori</h6>
         </div>

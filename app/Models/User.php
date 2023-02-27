@@ -96,4 +96,9 @@ class User extends Authenticatable
     
                 return $societies;
         }
+
+        public function Item()
+        {
+            return $this->hasMany(Item::class);
+        }
 }

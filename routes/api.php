@@ -32,5 +32,6 @@ Route::group([
         Route::get('/brands/categories', [DatatableController::class, 'getBrandOnCategories']);
         Route::get('/models/brands', [DatatableController::class, 'getModelsOnBrands']);
         Route::get('/models', [DatatableController::class, 'getModels']);
+        Route::get('/items', [DatatableController::class, 'getItems']);
     });
 });

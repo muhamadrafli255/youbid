@@ -1,8 +1,11 @@
-        <!-- Sidebar -->
+@section('script')
+<script src="https://kit.fontawesome.com/0661b15b8c.js" crossorigin="anonymous"></script>
+@endsection
+<!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-gavel"></i>
                 </div>
@@ -14,7 +17,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item {{ Request::is('dashboard*') ? 'active' : '' }}">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -71,7 +74,7 @@
             </li>
 
             <!-- Nav Item - Barang -->
-            <li class="nav-item">
+            <li class="nav-item {{ Request::is('items*') ? 'active' : '' }}">
                 <a class="nav-link" href="/items">
                     <i class="fas fa-fw fa-car"></i>
                     <span>Barang</span></a>
@@ -91,11 +94,29 @@
                 <span>Lot</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="/price">
+                    <i class="fas fa-fw fa-dollar-sign"></i>
+                <span>Harga Kelipatan</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/price">
+                    <i class="fas fa-fw fa-money-bill"></i>
+                <span>Harga Tiket</span></a>
+            </li>
+
             <!-- Nav Item - Lelang -->
             <li class="nav-item">
                 <a class="nav-link" href="/auctions">
                     <i class="fas fa-fw fa-gavel"></i>
                 <span>Lelang</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/auctions">
+                    <i class="fas fa-fw fa-file"></i>
+                <span>Laporan</span></a>
             </li>
 
             <!-- Divider -->

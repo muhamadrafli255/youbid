@@ -8,6 +8,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SocietyController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ItemModelController;
 use App\Http\Controllers\OfficerController;
 
@@ -150,5 +151,15 @@ Route::group([
         Route::get('/{id}/edit', [ItemModelController::class, 'edit']);
         Route::put('/{id}/edit', [ItemModelController::class, 'update']);
         Route::get('/{id}/delete', [ItemModelController::class, 'delete']);
+    });
+
+    Route::prefix('items')->group(function(){
+        Route::get('/', [ItemController::class, 'index']);
+        Route::get('/create', [ItemController::class, 'create']);
+        Route::post('/create', [ItemController::class, 'store']);
+        Route::get('/{id}', [ItemController::class, 'detail']);
+        Route::get('/{id}/edit', [ItemController::class, 'edit']);
+        Route::put('/{id}/edit', [ItemController::class, 'update']);
+        Route::get('/{id}/delete', [ItemController::class, 'delete']);
     });
 });
