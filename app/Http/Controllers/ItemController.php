@@ -247,6 +247,12 @@ class ItemController extends Controller
 
     public function delete($id)
     {
+        $checkItems = Item::where('id', $id)->get();
+        foreach($checkItems as $item)
+        if($item->is_auction == 1){
+            toast()->error('Gagal!', 'Barang '.$item->name.' Sedang Dilelang!');
+            return redirect('/items');
+        }
         $images = ItemImage::where('item_id', $id)->get();
         unlink('img/item-images/'.$images[0]->image_name);
         unlink('img/item-images/'.$images[1]->image_name);

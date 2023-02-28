@@ -29,5 +29,6 @@ class DatabaseSeeder extends Seeder
         $this->call(GradeItemSeeder::class);
         $this->call(ImageItemSeeder::class);
         $this->call(ItemSeeder::class);
+        $this->call(LotSeeder::class);
     }
 }

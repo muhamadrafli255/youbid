@@ -10,6 +10,7 @@ use App\Http\Controllers\SocietyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ItemModelController;
+use App\Http\Controllers\LotController;
 use App\Http\Controllers\OfficerController;
 
 /*
@@ -161,5 +162,15 @@ Route::group([
         Route::get('/{id}/edit', [ItemController::class, 'edit']);
         Route::put('/{id}/edit', [ItemController::class, 'update']);
         Route::get('/{id}/delete', [ItemController::class, 'delete']);
+    });
+
+    Route::prefix('lots')->group(function(){
+        Route::get('/', [LotController::class, 'index']);
+        Route::get('/create', [LotController::class, 'create']);
+        Route::post('/create', [LotController::class, 'store']);
+        Route::get('/{id}', [LotController::class, 'detail']);
+        Route::get('/{id}/edit', [LotController::class, 'edit']);
+        Route::put('/{id}/edit', [LotController::class, 'update']);
+        Route::get('/{id}/delete', [LotController::class, 'delete']);
     });
 });

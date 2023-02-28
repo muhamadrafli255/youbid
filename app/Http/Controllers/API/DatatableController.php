@@ -73,4 +73,10 @@ class DatatableController extends Controller
             return $data->ItemModel->Brand->Category->name;
         })->make(true);
     }
+
+    public function getLots(Request $request)
+    {
+        $data = \App\Models\Lot::getLots($request->query());
+        return DataTables::of($data)->make(true);
+    }
 }

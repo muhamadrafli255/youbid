@@ -88,7 +88,7 @@
             </div>
 
             <!-- Nav Item - Lot -->
-            <li class="nav-item">
+            <li class="nav-item {{ Request::is('lots*') ? 'active' : '' }}">
                 <a class="nav-link" href="/lots">
                     <i class="fas fa-fw fa-door-open"></i>
                 <span>Lot</span></a>

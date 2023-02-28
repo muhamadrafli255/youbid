@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateLotsTable extends Migration
 {
@@ -17,7 +18,8 @@ class CreateLotsTable extends Migration
             $table->id();
             $table->foreignId('item_id');
             $table->string('name');
-            $table->date('timetable');
+            $table->timestamp('opened_date')->default(Carbon::now());
+            $table->timestamp('closed_date')->default(Carbon::now());
             $table->string('location');
             $table->timestamps();
         });
