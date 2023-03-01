@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\MultiplePrice;
+use App\Models\TicketPrice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
@@ -124,6 +126,8 @@ class CategoryController extends Controller
         unlink($image_path);
         unlink($thumbnail_path);
         Category::where('id', $id)->delete();
+        MultiplePrice::where('category_id', $id)->delete();
+        TicketPrice::where('category_id', $id)->delete();
         toast()->success('Berhasil!', 'Kategori '.$category->name.' Berhasil Dihapus!');
         return redirect('/categories');
         }

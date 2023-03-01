@@ -79,4 +79,20 @@ class DatatableController extends Controller
         $data = \App\Models\Lot::getLots($request->query());
         return DataTables::of($data)->make(true);
     }
+
+    public function getMultiplePrice(Request $request)
+    {
+        $data = \App\Models\MultiplePrice::getMultiplePrice(($request->query()));
+        return DataTables::of($data)->addColumn('category_name', function($data){
+            return $data->Category->name;
+        })->make(true);
+    }
+
+    public function getTicketPrice(Request $request)
+    {
+        $data = \App\Models\TicketPrice::getTicketPrice(($request->query()));
+        return DataTables::of($data)->addColumn('category_name', function($data){
+            return $data->Category->name;
+        })->make(true);
+    }
 }

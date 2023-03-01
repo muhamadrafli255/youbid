@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAuctionsTable extends Migration
+class CreateTicketPricesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateAuctionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('auctions', function (Blueprint $table) {
+        Schema::create('ticket_prices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('lot_id');
-            $table->tinyInteger('status');
+            $table->foreignId('category_id');
+            $table->decimal('price', 10, 2);
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateAuctionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('auctions');
+        Schema::dropIfExists('ticket_prices');
     }
 }

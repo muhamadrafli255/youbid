@@ -17,8 +17,8 @@ class LotSeeder extends Seeder
         Lot::create([
             'item_id'       =>  1,
             'name'          =>  'LOT - 01',
-            'opened_date'   =>  '2023-02-28 13:01',
-            'closed_date'   =>  '2023-03-02 13:01',
+            'opened_date'   =>  '2023-03-01 18:00',
+            'closed_date'   =>  '2023-03-02 18:00',
             'location'      =>  'Bandung',
         ]);
     }

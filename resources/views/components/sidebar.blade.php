@@ -36,13 +36,14 @@
                         <i class="fas fa-fw fa-users"></i>
                         <span>Masyarakat</span></a>
                 </li>
-
+                @role('admin')
                 <!-- Nav Item - Petugas -->
                 <li class="nav-item {{ Request::is('officers*') ? 'active' : '' }}">
                     <a class="nav-link" href="/officers">
                         <i class="fas fa-fw fa-user-tie"></i>
                         <span>Petugas</span></a>
                 </li>
+                @endrole
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -94,14 +95,14 @@
                 <span>Lot</span></a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/price">
+            <li class="nav-item {{ Request::is('multipleprice*') ? 'active' : '' }}">
+                <a class="nav-link" href="/multipleprice">
                     <i class="fas fa-fw fa-dollar-sign"></i>
                 <span>Harga Kelipatan</span></a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/price">
+            <li class="nav-item {{ Request::is('ticketprice*') ? 'active' : '' }}">
+                <a class="nav-link" href="/ticketprice">
                     <i class="fas fa-fw fa-money-bill"></i>
                 <span>Harga Tiket</span></a>
             </li>

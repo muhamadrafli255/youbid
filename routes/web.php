@@ -2,16 +2,23 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\AddressController;
-use App\Http\Controllers\BrandController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\SocietyController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ItemController;
-use App\Http\Controllers\ItemModelController;
 use App\Http\Controllers\LotController;
+use App\Http\Controllers\MultiplePrice;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\OfficerController;
+use App\Http\Controllers\SocietyController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ItemModelController;
+use App\Http\Controllers\TicketPriceController;
+use App\Http\Controllers\MultiplePriceController;
+use App\Http\Controllers\PaymentCallbackController;
+use App\Http\Middleware\VerifyCsrfToken;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +31,7 @@ use App\Http\Controllers\OfficerController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
+Route::get('/', [HomeController::class, 'index']);
 Route::post('/getcities', [AddressController::class, 'getCities']);
 Route::post('/getdistricts', [AddressController::class, 'getDistricts']);
 Route::post('/getsubdistricts', [AddressController::class, 'getSubDistricts']);
@@ -98,6 +102,22 @@ Route::group([
     'middleware'    =>  ['auth', 'verified'],
 ], function()
 {
+    Route::prefix('buyticket')->group(function(){
+        Route::get('/', [TicketController::class, 'index']);
+        // Route::get('/{name}', [TicketController::class, 'mobil']);
+        Route::get('/transaction', [TicketController::class, 'history']);
+        Route::get('/transaction/{id}', [TicketController::class, 'show']);
+        Route::get('/{id}', [TicketController::class, 'review']);
+        Route::post('/{id}', [TicketController::class, 'store']);
+    });
+
+});
+
+Route::group([
+    'namespace'     =>  'App',
+    'middleware'    =>  ['auth', 'verified', 'role:admin|officer'],
+], function()
+{
     Route::prefix('dashboard')->group(function(){
         Route::get('/', [DashboardController::class, 'index']);
     });
@@ -111,17 +131,6 @@ Route::group([
         Route::post('/{uuid}/edit', [SocietyController::class, 'update']);
         Route::get('/{uuid}/delete', [SocietyController::class, 'delete']);
         Route::get('/{uuid}/verify', [SocietyController::class, 'verify']);
-    });
-
-    Route::prefix('officers')->group(function(){
-        Route::get('/', [OfficerController::class, 'index']);
-        Route::get('/create', [OfficerController::class, 'create']); 
-        Route::post('/create', [OfficerController::class, 'store']); 
-        Route::get('/{uuid}', [OfficerController::class, 'detail']);
-        Route::get('/{uuid}/edit', [OfficerController::class, 'edit']);
-        Route::post('/{uuid}/edit', [OfficerController::class, 'update']);
-        Route::get('/{uuid}/delete', [OfficerController::class, 'delete']);
-        Route::get('/{uuid}/verify', [OfficerController::class, 'verify']);
     });
 
     Route::prefix('categories')->group(function(){
@@ -173,4 +182,41 @@ Route::group([
         Route::put('/{id}/edit', [LotController::class, 'update']);
         Route::get('/{id}/delete', [LotController::class, 'delete']);
     });
+
+    Route::prefix('multipleprice')->group(function(){
+        Route::get('/', [MultiplePriceController::class, 'index']);
+        Route::get('/create', [MultiplePriceController::class, 'create']);
+        Route::post('/create', [MultiplePriceController::class, 'store']);
+        Route::get('/{id}', [MultiplePriceController::class, 'detail']);
+        Route::get('/{id}/edit', [MultiplePriceController::class, 'edit']);
+        Route::put('/{id}/edit', [MultiplePriceController::class, 'update']);
+        Route::get('/{id}/delete', [MultiplePriceController::class, 'delete']);
+    });
+
+    Route::prefix('ticketprice')->group(function(){
+        Route::get('/', [TicketPriceController::class, 'index']);
+        Route::get('/create', [TicketPriceController::class, 'create']);
+        Route::post('/create', [TicketPriceController::class, 'store']);
+        Route::get('/{id}', [TicketPriceController::class, 'detail']);
+        Route::get('/{id}/edit', [TicketPriceController::class, 'edit']);
+        Route::put('/{id}/edit', [TicketPriceController::class, 'update']);
+        Route::get('/{id}/delete', [TicketPriceController::class, 'delete']);
+    });
 });
+
+Route::group([
+    'namespace'     =>  'App',
+    'middleware'    =>  ['auth', 'verified', 'role:admin'],
+], function()
+{
+    Route::prefix('officers')->group(function(){
+        Route::get('/', [OfficerController::class, 'index']);
+        Route::get('/create', [OfficerController::class, 'create']); 
+        Route::post('/create', [OfficerController::class, 'store']); 
+        Route::get('/{uuid}', [OfficerController::class, 'detail']);
+        Route::get('/{uuid}/edit', [OfficerController::class, 'edit']);
+        Route::post('/{uuid}/edit', [OfficerController::class, 'update']);
+        Route::get('/{uuid}/delete', [OfficerController::class, 'delete']);
+        Route::get('/{uuid}/verify', [OfficerController::class, 'verify']);
+    });
+});    

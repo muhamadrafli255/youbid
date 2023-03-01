@@ -20,6 +20,7 @@ class CreateLotsTable extends Migration
             $table->string('name');
             $table->timestamp('opened_date')->default(Carbon::now());
             $table->timestamp('closed_date')->default(Carbon::now());
+            $table->decimal('initial_price')->nullable();
             $table->string('location');
             $table->timestamps();
         });

@@ -88,8 +88,13 @@ class AuthController extends Controller
                 $request->session()->regenerate();
                 return redirect()->intended('/complete-data');
             }else{
-                $request->session()->regenerate();
-                return redirect()->intended('/dashboard');
+                if($request->user()->hasRole('society')){
+                    $request->session()->regenerate();
+                    return redirect()->intended('/');
+                }else{
+                    $request->session()->regenerate();
+                    return redirect()->intended('/dashboard');
+                }
             }
             
         }else{

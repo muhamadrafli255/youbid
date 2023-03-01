@@ -3,32 +3,33 @@
 @section('style')
 @include('components.styles.datatable')
 <style>
-  .carousel-inner img {
-      width: 100%;
-      height: 80%;
-  }
+    .carousel-inner img {
+        width: 100%;
+        height: 80%;
+    }
 
-#custCarousel .carousel-indicators {
-    position: static;
-    margin-top:5px;
-}
+    #custCarousel .carousel-indicators {
+        position: static;
+        margin-top: 5px;
+    }
 
-#custCarousel .carousel-indicators > li {
-  width:100px;
-}
+    #custCarousel .carousel-indicators>li {
+        width: 100px;
+    }
 
- #custCarousel .carousel-indicators li img {
-    display: block;
-    opacity: 0.5;
- }
+    #custCarousel .carousel-indicators li img {
+        display: block;
+        opacity: 0.5;
+    }
 
-  #custCarousel .carousel-indicators li.active img {
-    opacity: 1;
-  }
+    #custCarousel .carousel-indicators li.active img {
+        opacity: 1;
+    }
 
-  #custCarousel .carousel-indicators li:hover img {
-    opacity: 0.75;
-  }
+    #custCarousel .carousel-indicators li:hover img {
+        opacity: 0.75;
+    }
+
 </style>
 @endsection
 
@@ -124,87 +125,93 @@
                             </div>
                         </div>
                         <div class="col-lg-6 col-sm-12 mt-sm-4">
-                                <div class="row mt-2 ml-1">
-                                    <div class="col-5">
-                                        <h6 class="font-weight-bold">Nama Barang</h6>
-                                    </div>
-                                    <div class="col-1">
-                                        :
-                                    </div>
-                                    <div class="col-4">
-                                        <h6>{{ $item->name }}</h6>
-                                    </div>
+                            <div class="row mt-1 ml-1 mb-2">
+                                <div class="col-5">
+                                    <h6 class="font-weight-bold">Kode Barang</h6>
                                 </div>
-                                <hr>
-                                <div class="row mt-1 ml-1">
-                                    <div class="col-5">
-                                        <h6 class="font-weight-bold">Model Barang</h6>
-                                    </div>
-                                    <div class="col-1">
-                                        :
-                                    </div>
-                                    <div class="col-4">
-                                        <h6>{{ $item->ItemModel->name }}</h6>
-                                    </div>
+                                <div class="col-1">
+                                    :
                                 </div>
-                                <hr>
-                                <div class="row mt-1 ml-1">
-                                    <div class="col-5">
-                                        <h6 class="font-weight-bold">Merk Barang</h6>
-                                    </div>
-                                    <div class="col-1">
-                                        :
-                                    </div>
-                                    <div class="col-4">
-                                        <h6>{{ $item->ItemModel->Brand->name }}</h6>
-                                    </div>
+                                <div class="col-4">
+                                    <h6>{{ $item->item_code }}</h6>
                                 </div>
-                                <hr>
-                                <div class="row mt-1 ml-1">
-                                    <div class="col-5">
-                                        <h6 class="font-weight-bold">Kategori Barang</h6>
-                                    </div>
-                                    <div class="col-1">
-                                        :
-                                    </div>
-                                    <div class="col-4">
-                                        <h6>{{ $item->ItemModel->Brand->Category->name }}</h6>
-                                    </div>
+                            </div>
+                            <hr>
+                            <div class="row mt-2 ml-1">
+                                <div class="col-5">
+                                    <h6 class="font-weight-bold">Nama Barang</h6>
                                 </div>
-                                <hr>
-                                <div class="row mt-1 ml-1 mb-2">
-                                    <div class="col-5">
-                                        <h6 class="font-weight-bold">Ditambahkan oleh</h6>
-                                    </div>
-                                    <div class="col-1">
-                                        :
-                                    </div>
-                                    <div class="col-4">
-                                        <h6>{{ $item->CreateBy->full_name }}</h6>
-                                    </div>
+                                <div class="col-1">
+                                    :
                                 </div>
+                                <div class="col-4">
+                                    <h6>{{ $item->name }}</h6>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mt-1 ml-1">
+                                <div class="col-5">
+                                    <h6 class="font-weight-bold">Model Barang</h6>
+                                </div>
+                                <div class="col-1">
+                                    :
+                                </div>
+                                <div class="col-4">
+                                    <h6>{{ $item->ItemModel->name }}</h6>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mt-1 ml-1">
+                                <div class="col-5">
+                                    <h6 class="font-weight-bold">Merk Barang</h6>
+                                </div>
+                                <div class="col-1">
+                                    :
+                                </div>
+                                <div class="col-4">
+                                    <h6>{{ $item->ItemModel->Brand->name }}</h6>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mt-1 ml-1">
+                                <div class="col-5">
+                                    <h6 class="font-weight-bold">Kategori Barang</h6>
+                                </div>
+                                <div class="col-1">
+                                    :
+                                </div>
+                                <div class="col-4">
+                                    <h6>{{ $item->ItemModel->Brand->Category->name }}</h6>
+                                </div>
+                            </div>
                             <div class="col-12 mt-5">
                                 <div class="card shadow mt-3 px-4">
                                     <div class="row">
-                                    <div class="col-4 mx-auto text-center mt-2">
-                                        <i style="font-size: 24px" class="fas fa-calendar"></i>
-                                        <p class="text-center mt-2" style="font-size: 10px;">Tahun Produksi</p>
-                                        <p class="text-center font-weight-bold" style="font-size: 10px; margin-top:-20px;">{{ $item->ItemModel->production_year }}</p>
-                                    </div>
-                                    <div class="col-4 mx-auto text-center mt-2">
-                                        <i style="font-size: 24px" class="fas fa-gas-pump"></i>
-                                        <p class="text-center mt-2" style="font-size: 10px;">Bahan Bakar</p>
-                                        <p class="text-center font-weight-bold" style="font-size: 10px; margin-top:-20px;">{{ $item->DetailItem->fuel }}</p>
-                                    </div>
-                                    <div class="col-4 mx-auto text-center mt-2">
-                                        <i style="font-size: 24px" class="fas fa-code-branch"></i>
-                                        <p class="text-center mt-2" style="font-size: 10px;">Transmisi</p>
-                                        @if ($item->DetailItem->transmission == 1)    
-                                        <p class="text-center font-weight-bold" style="font-size: 10px; margin-top:-20px;">AT</p>
-                                        @else
-                                        <p class="text-center font-weight-bold" style="font-size: 10px; margin-top:-20px;">MT</p>    
-                                        @endif
-                                    </div>
+                                        <div class="col-4 mx-auto text-center mt-2">
+                                            <i style="font-size: 24px" class="fas fa-calendar"></i>
+                                            <p class="text-center mt-2" style="font-size: 10px;">Tahun Produksi</p>
+                                            <p class="text-center font-weight-bold"
+                                                style="font-size: 10px; margin-top:-20px;">
+                                                {{ $item->ItemModel->production_year }}</p>
+                                        </div>
+                                        <div class="col-4 mx-auto text-center mt-2">
+                                            <i style="font-size: 24px" class="fas fa-gas-pump"></i>
+                                            <p class="text-center mt-2" style="font-size: 10px;">Bahan Bakar</p>
+                                            <p class="text-center font-weight-bold"
+                                                style="font-size: 10px; margin-top:-20px;">{{ $item->DetailItem->fuel }}
+                                            </p>
+                                        </div>
+                                        <div class="col-4 mx-auto text-center mt-2">
+                                            <i style="font-size: 24px" class="fas fa-code-branch"></i>
+                                            <p class="text-center mt-2" style="font-size: 10px;">Transmisi</p>
+                                            @if ($item->DetailItem->transmission == 1)
+                                            <p class="text-center font-weight-bold"
+                                                style="font-size: 10px; margin-top:-20px;">AT</p>
+                                            @else
+                                            <p class="text-center font-weight-bold"
+                                                style="font-size: 10px; margin-top:-20px;">MT</p>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -371,7 +378,7 @@
                                         @if ($item->DetailItem->vehiche_registration)
                                         <h6>Ada</h6>
                                         @else
-                                        <h6>Tidak Ada</h6>    
+                                        <h6>Tidak Ada</h6>
                                         @endif
                                     </div>
                                 </div>
@@ -397,7 +404,7 @@
                                         @if ($item->DetailItem->book_vehicle_owner)
                                         <h6>Ada</h6>
                                         @else
-                                        <h6>Tidak Ada</h6>    
+                                        <h6>Tidak Ada</h6>
                                         @endif
                                     </div>
                                 </div>
@@ -412,7 +419,7 @@
                                         @if ($item->DetailItem->invoice)
                                         <h6>Ada</h6>
                                         @else
-                                        <h6>Tidak Ada</h6>    
+                                        <h6>Tidak Ada</h6>
                                         @endif
                                     </div>
                                 </div>
@@ -427,7 +434,7 @@
                                         @if ($item->DetailItem->receipt)
                                         <h6>Ada</h6>
                                         @else
-                                        <h6>Tidak Ada</h6>    
+                                        <h6>Tidak Ada</h6>
                                         @endif
                                     </div>
                                 </div>
@@ -442,14 +449,14 @@
                                         @if ($item->DetailItem->owner_identity)
                                         <h6>Ada</h6>
                                         @else
-                                        <h6>Tidak Ada</h6>    
+                                        <h6>Tidak Ada</h6>
                                         @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
                         @if ($item->grade_item_id == null)
-                            
+
                         @else
                         <div class="col-lg-3 col-sm-12">
                             <div class="card shadow mt-5">

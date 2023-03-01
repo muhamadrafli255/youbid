@@ -101,4 +101,9 @@ class User extends Authenticatable
         {
             return $this->hasMany(Item::class);
         }
+
+        public function TransactionTicket()
+        {
+            return $this->hasMany(TransactionTicket::class);
+        }
 }

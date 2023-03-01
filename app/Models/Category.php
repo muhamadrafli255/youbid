@@ -25,4 +25,14 @@ class Category extends Model
         ]);
         return $categories;
     }
+
+    public function MultiplePrice()
+    {
+        return $this->belongsTo(MultiplePrice::class);
+    }
+
+    public function TicketPrice()
+    {
+        return $this->hasMany(TicketPrice::class);
+    }
 }

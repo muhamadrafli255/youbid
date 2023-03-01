@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\DatatableController;
+use App\Http\Controllers\PaymentCallbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('payments/midtrans-notification', [PaymentCallbackController::class, 'post']);
+
 Route::group([
     'namespace' => 'API',
 ], function(){
@@ -34,5 +37,7 @@ Route::group([
         Route::get('/models', [DatatableController::class, 'getModels']);
         Route::get('/items', [DatatableController::class, 'getItems']);
         Route::get('/lots', [DatatableController::class, 'getLots']);
+        Route::get('/multipleprice', [DatatableController::class, 'getMultiplePrice']);
+        Route::get('/ticketprice', [DatatableController::class, 'getTicketPrice']);
     });
 });
