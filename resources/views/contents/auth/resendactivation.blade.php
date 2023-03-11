@@ -24,7 +24,10 @@
                                             <p>Akun anda belum diaktivasi silahkan cek email anda untuk aktivasi!.</p>
                                         </div>
                                         <div class="text-center mt-4">
-                                            <a class="small text-danger" href="/login">Tidak Mendapatkan Email?</a>
+                                            <form action="/resend-activation" method="post">
+                                            @csrf
+                                            <input type="submit" class="small text-primary text-decoration-none btn" value="Tidak Mendapatkan Email?"></input>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

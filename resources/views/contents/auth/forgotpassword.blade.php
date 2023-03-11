@@ -7,7 +7,7 @@
                 <div class="col-xl-10 col-lg-12 col-md-9">
 
                     @if (session('failed'))
-                    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                    <div class="alert alert-primary alert-dismissible fade show mt-3" role="alert">
                         {{ session('failed') }}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -37,16 +37,16 @@
                                                         </div>
                                                     @enderror
                                             </div>
-                                            <button type="submit" class="btn btn-danger btn-user btn-block">
+                                            <button type="submit" class="btn btn-primary text-light font-weight-bold btn-user btn-block">
                                                 Atur Ulang Password
                                             </button>
                                             <hr>
                                         </form>
                                         <div class="text-center mt-4">
-                                            <a class="small text-danger" href="/login">Ingat Password?</a>
+                                            <a class="small text-primary text-decoration-none" href="/login">Ingat Password?</a>
                                         </div>
                                         <div class="text-center">
-                                            <a class="small text-danger" href="/register">Belum Punya Akun?</a>
+                                            <a class="small text-primary text-decoration-none" href="/register">Belum Punya Akun?</a>
                                         </div>
                                     </div>
                                 </div>

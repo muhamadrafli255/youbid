@@ -46,7 +46,7 @@
     @foreach ($items as $item)
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">{{ $title }}</h1>
-    <p class="mb-4">Berikut adalah detail barang dari barang <span class="text-danger">{{ $item->name }}</span>.</p>
+    <p class="mb-4">Berikut adalah detail barang dari barang <span class="text-primary">{{ $item->name }}</span>.</p>
 
     @if (session('success'))
     <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
@@ -61,7 +61,7 @@
         <div class="col-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-danger">Detail Barang</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Detail Barang</h6>
                 </div>
                 @foreach ($images as $image)
                 <div class="card-body">

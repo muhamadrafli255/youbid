@@ -16,7 +16,7 @@ class TransactionTicket extends Model
     {
         return [
             'number' => [
-                'format' => '2023/YBD/ID/03?', // autonumber format. '?' will be replaced with the generated number.
+                'format' => '2023/ID/03?', // autonumber format. '?' will be replaced with the generated number.
                 'length' => 6 // The number of digits in an autonumber
             ]
         ];

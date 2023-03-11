@@ -6,7 +6,7 @@
 
                 <div class="col-xl-10 col-lg-12 col-md-9">
                     @if (session('failed'))
-                    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                    <div class="alert alert-primary alert-dismissible fade show mt-3" role="alert">
                         {{ session('failed') }}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -30,13 +30,13 @@
                                                     placeholder="Masukkan Kode OTP">
                                                     <input type="hidden" name="token" value="{{ $mytoken }}">
                                             </div>
-                                            <button type="submit" class="btn btn-danger btn-user btn-block">
+                                            <button type="submit" class="btn btn-primary text-light font-weight-bold btn-user btn-block">
                                                 Aktivasi
                                             </button>
                                             <hr>
                                         </form>
                                         <div class="text-center mt-4">
-                                            <a class="small text-danger" href="/login">Tidak Mendapatkan Kode OTP?</a>
+                                            <a class="small text-primary text-decoration-none" href="/login">Tidak Mendapatkan Kode OTP?</a>
                                         </div>
                                     </div>
                                 </div>

@@ -15,8 +15,8 @@ class AuctionSeeder extends Seeder
     public function run()
     {
         Auction::create([
-            'lot_id'    =>  1,
-            'status'    =>  0,
+            'lot_id'        =>  1,
+            'status'        =>  0,
         ]);
     }
 }

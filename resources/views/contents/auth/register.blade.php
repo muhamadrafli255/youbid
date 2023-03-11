@@ -11,7 +11,7 @@
                             <!-- Nested Row within Card Body -->
                             <div class="row">
                                 <div class="col-lg-6 d-none d-lg-block">
-                                    <img src="/assets/img/bg/bg-register-image.jpg" class="img-fluid" alt="" height="600" width="500">
+                                    <img src="/assets/img/bg/bg-register.svg" class="img-fluid h-75 w-75" style="margin-top: 3rem; margin-left:3rem;" alt="bg-register">
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="p-5">
@@ -64,19 +64,19 @@
                                             </div>
                                             <div class="form-group">
                                                 <div class="custom-control custom-checkbox small">
-                                                    <span>Dengan mendaftar Anda telah mengetahui dan menyetujui <a href ="" class="text-danger">Syarat & Ketentuan</a> serta <a href ="" class="text-danger">Kebijakan Privasi</a> dari <a href ="" class="text-danger">YouBID</a></span>
+                                                    <span>Dengan mendaftar Anda telah mengetahui dan menyetujui <a href ="" class="text-primary">Syarat & Ketentuan</a> serta <a href ="" class="text-primary">Kebijakan Privasi</a> dari <a href ="" class="text-primary">YouBID</a></span>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="btn btn-danger btn-user btn-block">
+                                            <button type="submit" class="btn btn-primary btn-user btn-block text-light font-weight-bold">
                                                 Daftar
                                             </button>
                                             <hr>
                                         </form>
                                         <div class="text-center">
-                                            <a class="small text-danger" href="/login">Sudah Punya Akun?</a>
+                                            <a class="small text-primary text-decoration-none" href="/login">Sudah Punya Akun?</a>
                                         </div>
                                         <div class="text-center">
-                                            <a class="small text-danger" href="/forgot-password">Lupa Password?</a>
+                                            <a class="small text-primary text-decoration-none" href="/forgot-password">Lupa Password?</a>
                                         </div>
                                     </div>
                                 </div>

@@ -17,7 +17,7 @@
                             @foreach ($categories as $category)
                             <!-- Page Heading -->
                             <h1 class="h3 mb-2 text-gray-800">{{ $title }}</h1>
-                            <p class="mb-4">Berikut adalah detail kategori dari kategori <span class="text-danger">{{ $category->name }}</span>.</p>
+                            <p class="mb-4">Berikut adalah detail kategori dari kategori <span class="text-primary">{{ $category->name }}</span>.</p>
         
                             @if (session('success'))
                             <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
@@ -32,7 +32,7 @@
                                 <div class="col-12">
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-danger">Detail Kategori</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">Detail Kategori</h6>
                                         </div>
                                         <div class="card-body">
                                             <div class="row">
@@ -50,8 +50,8 @@
                             <!-- DataTales Example -->
                             <div class="card shadow mb-4 dt-container">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-danger">Tabel Merk</h6>
-                                    <p class="m-0">Berikut adalah data merk yang ada pada kategori <span class="text-danger">{{ $category->name }}</span>.</p>
+                                    <h6 class="m-0 font-weight-bold text-primary">Tabel Merk</h6>
+                                    <p class="m-0">Berikut adalah data merk yang ada pada kategori <span class="text-primary">{{ $category->name }}</span>.</p>
                                 </div>
                                 <div class="card-body">
                                             <div class="float-right ml-2 mb-2">

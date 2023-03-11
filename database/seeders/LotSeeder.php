@@ -19,6 +19,7 @@ class LotSeeder extends Seeder
             'name'          =>  'LOT - 01',
             'opened_date'   =>  '2023-03-01 18:00',
             'closed_date'   =>  '2023-03-02 18:00',
+            'initial_price' =>  1000000,
             'location'      =>  'Bandung',
         ]);
     }

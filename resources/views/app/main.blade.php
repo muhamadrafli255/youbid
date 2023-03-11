@@ -21,6 +21,8 @@
 
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/admin.css">
+    <link rel="stylesheet" href="/assets/css/mystyle.css">
 
 </head>
 
@@ -71,7 +73,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Yakin Akan Keluar Dari <span class="text-danger">Youbid</span>?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Yakin Akan Keluar Dari <span class="text-primary">Youbid</span>?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -79,7 +81,7 @@
                 <div class="modal-body">Klik "Yakin" jika anda ingin keluar!.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                    <a class="btn btn-danger" href="/logout">Yakin</a>
+                    <a class="btn btn-primary text-light" href="/logout">Yakin</a>
                 </div>
             </div>
         </div>
@@ -87,7 +89,7 @@
 
     <!-- Bootstrap core JavaScript-->
     <script src="/vendor/jquery/jquery.min.js"></script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

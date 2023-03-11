@@ -20,10 +20,11 @@
 
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/admin.css">
 
 </head>
 @include('sweetalert::alert')
-<body class="bg-gradient-danger">
+<body class="bg-primary" style="font-family: 'Nunito', sans-serif;">
 
     <div class="container">
 

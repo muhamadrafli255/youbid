@@ -24,7 +24,7 @@
                 previous: '<i class="fas fa-arrow-left fa-fw"></i>'
             },
             processing: `<div class="h-100 d-flex flex-column align-items-center justify-content-center">
-                <div class="spinner-border text-danger mb-3" role="status"><span class="sr-only">Processing...</span></div>
+                <div class="spinner-border text-primary mb-3" role="status"><span class="sr-only">Processing...</span></div>
                 <span class="font-weight-semibold">Mohon Tunggu...</span>
             </div>`,
             search: '_INPUT_'

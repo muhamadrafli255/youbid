@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
-use FFI;
 use Yajra\DataTables\Contracts\DataTable;
 
 class DatatableController extends Controller
@@ -93,6 +92,18 @@ class DatatableController extends Controller
         $data = \App\Models\TicketPrice::getTicketPrice(($request->query()));
         return DataTables::of($data)->addColumn('category_name', function($data){
             return $data->Category->name;
+        })->make(true);
+    }
+
+    public function getAuction(Request $request)
+    {
+        $data = \App\Models\Auction::getAuction(($request->query()));
+        return DataTables::of($data)->addColumn('lot_name', function($data){
+            return $data->Lot->name;
+        })->addColumn('initial_price', function($data){
+            return $data->Lot->initial_price;
+        })->addColumn('location', function($data){
+            return $data->Lot->location;
         })->make(true);
     }
 }

@@ -11,7 +11,7 @@ html {
 
 /*Background color*/
 #grad1 {
-    background-color: : #e74a3b;
+    background-color: : #3e8755;
     background-image: linear-gradient(120deg, #FF4081, #81D4FA);
 }
 
@@ -57,7 +57,7 @@ html {
 /*Blue Buttons*/
 #msform .action-button {
     width: 100px;
-    background: #e74a3b;
+    background: #3e8755;
     font-weight: bold;
     color: white;
     border: 0 none;
@@ -68,7 +68,7 @@ html {
 }
 
 #msform .action-button:hover, #msform .action-button:focus {
-    box-shadow: 0 0 0 2px white, 0 0 0 3px #e74a3b;
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #3e8755;
 }
 
 /*Previous Buttons*/
@@ -98,7 +98,7 @@ select.list-dt {
 }
 
 select.list-dt:focus {
-    border-bottom: 2px solid #e74a3b;
+    border-bottom: 2px solid #3e8755;
 }
 
 /*The background card*/
@@ -183,7 +183,7 @@ select.list-dt:focus {
 
 /*Color number of the step and the connector before it*/
 #progressbar li.active:before, #progressbar li.active:after {
-    background: #e74a3b;
+    background: #3e8755;
 }
 
 /*Imaged Radio Buttons*/

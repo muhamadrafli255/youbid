@@ -63,6 +63,26 @@
                 })
             })
         })
+
+        $(function(){
+            $('#brands').on('change', function(){
+                let brand_id = $('#brands').val()
+                $.ajax({
+                    type: 'POST',
+                    url: "/getmodel",
+                    data: {brand_id:brand_id},
+                    cache: false,
+
+                    success: function(msg){
+                        $('#model').html(msg)
+                    },
+                    error: function(data){
+                        console.log('error:',data)
+                    },
+                })
+            })
+        })
     })
+    
 
 </script>

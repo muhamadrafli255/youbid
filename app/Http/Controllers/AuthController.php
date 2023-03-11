@@ -9,6 +9,7 @@ use App\Models\Province;
 use App\Models\BankAccount;
 use Illuminate\Support\Str;
 use App\Models\UserActivate;
+use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -144,6 +145,23 @@ class AuthController extends Controller
         return view('contents.auth.resendactivation', compact('title'));
     }
 
+    public function newActivation()
+    {
+        $otp = rand(4000,8000);
+            $generateToken = UserActivate::create([
+                'user_id'   =>  Auth::user()->id,
+                'token'     =>  Str::random(16),
+                'otp'       =>  $otp,
+            ]);
+
+            $token = $generateToken->token;
+            Mail::send('contents.mail.activation', ['token' => $token, 'name' => Auth::user()->full_name, 'otp' => $generateToken->otp], function($message){
+                $message->to(Auth::user()->email)->subject('Aktivasi Akun Youbid!');
+            });
+            Alert::success('Berhasil', 'Tautan Aktivasi Berhasil Dikirim Ulang!');
+            return redirect('/login');
+    }
+
     public function completeData()
     {
         $title = "Lengkapi Data";
@@ -162,8 +180,8 @@ class AuthController extends Controller
             'sub_district_id'   =>  'required',
             'postal_code'       =>  'required|numeric',
             'full_address'      =>  'required',
-            'image'             =>  'file|max:5120',
-            'id_card_image'     =>  'required|file|max:5120',
+            'image'             =>  'file|image|max:5120',
+            'id_card_image'     =>  'required|file|image|max:5120',
             'account_owner'     =>  'required',
             'account_number'    =>  'required',
             'bank_id'           =>  'required',
@@ -229,7 +247,7 @@ class AuthController extends Controller
                     'is_complete'       =>  1
                 ]);
             }
-            return redirect('/dashboard');
+            return redirect('/');
         }
         return back();
     }

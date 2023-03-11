@@ -10,6 +10,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\SocietyController;
 use App\Http\Controllers\CategoryController;
@@ -35,7 +36,13 @@ Route::get('/', [HomeController::class, 'index']);
 Route::post('/getcities', [AddressController::class, 'getCities']);
 Route::post('/getdistricts', [AddressController::class, 'getDistricts']);
 Route::post('/getsubdistricts', [AddressController::class, 'getSubDistricts']);
+Route::post('/getmodel', [HomeController::class, 'getModel']);
 
+Route::prefix('auction')->group(function()
+{
+    Route::get('/cars', [HomeController::class, 'getCars']);
+    Route::get('/moto', [HomeController::class, 'getMoto']);
+});
 /*
 |--------------------------------------------------------------------------
 | Route Middleware Guest
@@ -95,6 +102,7 @@ Route::group([
     'middleware'    =>  ['auth', 'unverified'],
 ], function(){
         Route::get('/resend-activation', [AuthController::class, 'resendActivation']);
+        Route::post('/resend-activation', [AuthController::class, 'newActivation']);
 });
 
 Route::group([
@@ -201,6 +209,16 @@ Route::group([
         Route::get('/{id}/edit', [TicketPriceController::class, 'edit']);
         Route::put('/{id}/edit', [TicketPriceController::class, 'update']);
         Route::get('/{id}/delete', [TicketPriceController::class, 'delete']);
+    });
+
+    Route::prefix('auctions')->group(function(){
+        Route::get('/', [AuctionController::class, 'index']);
+        Route::get('/create', [AuctionController::class, 'create']);
+        Route::post('/create', [AuctionController::class, 'store']);
+        Route::get('/{id}', [AuctionController::class, 'detail']);
+        Route::get('/{id}/edit', [AuctionController::class, 'edit']);
+        Route::put('/{id}/edit', [AuctionController::class, 'update']);
+        Route::get('/{id}/delete', [AuctionController::class, 'delete']);
     });
 });
 

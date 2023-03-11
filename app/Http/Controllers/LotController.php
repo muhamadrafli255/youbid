@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Lot;
 use App\Models\Item;
+use App\Models\ItemImage;
 use Illuminate\Http\Request;
 
 class LotController extends Controller
@@ -34,6 +35,15 @@ class LotController extends Controller
         Item::where('id', $request->item_id)->update(['is_auction' => 1]);
         toast()->success('Berhasil!', 'Lot '.$request->name.' Berhasil Ditambahkan!');
         return redirect('/lots');
+    }
+
+    public function detail($id)
+    {
+        $title = "Detail Lot";
+        $lots = Lot::where('id', $id)->get();
+        foreach($lots as $lot)
+        $images[] = ItemImage::where('item_id', $lot->Item->id)->get();
+        return view('contents.lots.detail', compact('title', 'lots', 'images'));
     }
 
     public function edit($id)

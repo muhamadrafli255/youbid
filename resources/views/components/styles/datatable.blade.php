@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/assets/plugins/DataTables/Responsive-2.4.0/css/responsive.bootstrap.min.css">
 <style>
     .paginate_button.active .page-link {
-  background-color: #e74a3b!important;
-  border: 1px solid red !important;
+  background-color: #3e8755!important;
+  border: 1px solid #3e8755 !important;
 }
 </style>

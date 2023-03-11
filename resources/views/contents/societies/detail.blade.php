@@ -4,7 +4,7 @@
 @foreach ($societies as $society)
 <div class="container-fluid">
     <h1 class="h3 mb-2 text-gray-800">{{ $title }}</h1>
-    <p class="mb-4">Berikut adalah data masyarakat dengan nama <span class="text-danger">{{ $society->full_name }}.</span></p>
+    <p class="mb-4">Berikut adalah data masyarakat dengan nama <span class="text-primary">{{ $society->full_name }}.</span></p>
 
     {{-- Card Information --}}
     <div class="row">
@@ -14,10 +14,10 @@
         <div class="col-lg-4 col-sm-12">
         @endif
             <div class="card shadow mb-4">
-                <img class="m-2 mx-auto img-fluid rounded-circle border border-1 border-danger"
+                <img class="m-2 mx-auto img-fluid rounded-circle border border-1 border-primary"
                     src="https://static.vecteezy.com/system/resources/thumbnails/004/607/791/small/man-face-emotive-icon-smiling-male-character-in-blue-shirt-flat-illustration-isolated-on-white-happy-human-psychological-portrait-positive-emotions-user-avatar-for-app-web-design-vector.jpg"
                     height="180" width="180" alt="">
-                <h5 class="font-weight-bold text-danger text-center">{{ $society->full_name }}</h5>
+                <h5 class="font-weight-bold text-primary text-center">{{ $society->full_name }}</h5>
                 <h5 class="small text-center mb-4">{{ $society->email }}</h5>
             </div>
         </div>
@@ -32,7 +32,7 @@
                 <img class="m-2 mx-auto img-fluid border"
                     src="{{ $society->BankAccount->Bank->image }}"
                     height="200" width="200" alt="">
-                <h5 class="font-weight-bold text-danger text-center">{{ $society->BankAccount->account_number }}</h5>
+                <h5 class="font-weight-bold text-primary text-center">{{ $society->BankAccount->account_number }}</h5>
                 <h5 class="small text-center">{{ $society->BankAccount->account_owner }}</h5>
                 <h5 class="small text-center mb-4">{{ $society->BankAccount->Bank->name }}</h5>
             </div>

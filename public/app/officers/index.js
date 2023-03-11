@@ -17,9 +17,9 @@ function initDatatable() {
             {
                 data: 'image', name:'image', class:'text-center', orderable: false, searchable: false,
                 render: function(data, type, row){
-                    image = '<img class="img-fluid rounded-circle border border-1 border-danger" src="/img/undraw_profile.svg" height="100" width="100" alt="">';
+                    image = '<img class="img-fluid rounded-circle border border-1 border-primary" src="/img/undraw_profile.svg" height="100" width="100" alt="">';
                     if(data != null){
-                        image = '<img class="img-fluid rounded-circle border border-1 border-danger" src="/img/profile-images/'+ data +'" height="100" width="100" alt="">'; 
+                        image = '<img class="img-fluid rounded-circle border border-1 border-primary" src="/img/profile-images/'+ data +'" height="100" width="100" alt="">'; 
                     }
 
                     return image;
@@ -37,7 +37,7 @@ function initDatatable() {
             {
                 data: 'is_complete', name:'is_complete', class:'text-center', orderable: true, searchable: true,
                 render: function(data, type, row){
-                    statusBadge = '<span class="badge badge-success">Terverifikasi</span>';
+                    statusBadge = '<span class="badge badge-primary">Terverifikasi</span>';
                     if(data == 0){
                         statusBadge = '<span class="badge badge-danger">Belum Lengkap</span>'; 
                     }else if(data == 1){

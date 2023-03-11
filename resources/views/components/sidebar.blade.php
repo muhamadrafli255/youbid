@@ -2,7 +2,7 @@
 <script src="https://kit.fontawesome.com/0661b15b8c.js" crossorigin="anonymous"></script>
 @endsection
 <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
@@ -108,7 +108,7 @@
             </li>
 
             <!-- Nav Item - Lelang -->
-            <li class="nav-item">
+            <li class="nav-item {{ Request::is('auctions*') ? 'active' : '' }}">
                 <a class="nav-link" href="/auctions">
                     <i class="fas fa-fw fa-gavel"></i>
                 <span>Lelang</span></a>

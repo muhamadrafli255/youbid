@@ -39,5 +39,6 @@ Route::group([
         Route::get('/lots', [DatatableController::class, 'getLots']);
         Route::get('/multipleprice', [DatatableController::class, 'getMultiplePrice']);
         Route::get('/ticketprice', [DatatableController::class, 'getTicketPrice']);
+        Route::get('/auctions', [DatatableController::class, 'getAuction']);
     });
 });

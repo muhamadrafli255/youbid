@@ -4,19 +4,19 @@
     <div class="container-fluid">
                                 <!-- Page Heading -->
                                 <h1 class="h3 mb-2 text-gray-800">{{ $title }}</h1>
-                                <p class="mb-4">Berikut adalah formulir untuk merubah data petugas di <a href="/" class="text-danger">YouBID</a>.</p>
+                                <p class="mb-4">Berikut adalah formulir untuk merubah data petugas di <a href="/" class="text-primary">YouBID</a>.</p>
 
                                 @foreach ($societies as $society)
                                 <div class="card show mb-4">
                                     <div class="card-header">
-                                        <h6 class="text-danger font-weight-bold">Form Edit Petugas</h6>
+                                        <h6 class="text-primary font-weight-bold">Form Edit Petugas</h6>
                                     </div>
                                     <div class="card-body">
                                         <form action="/officers/{{ $society->id }}/edit" method="POST" class="form-group">
                                             @csrf
                                             <div class="row">
                                                 <div class="col-6 mb-3">
-                                                    <label class="font-weight-bold text-danger" for="">NIK</label>
+                                                    <label class="font-weight-bold text-primary" for="">NIK</label>
                                                     <input type="number" name="nik" class="form-control @error('nik')
                                                         is-invalid
                                                     @enderror" value="@if($society->nik){{ $society->nik }}@else{{ old('nik') }}@endif" placeholder="Masukkan NIK" required>
@@ -27,7 +27,7 @@
                                                     @enderror
                                                 </div>
                                                 <div class="col-6 mb-3">
-                                                    <label class="font-weight-bold text-danger" for="">Nama Lengkap</label>
+                                                    <label class="font-weight-bold text-primary" for="">Nama Lengkap</label>
                                                     <input type="text" name="full_name" class="form-control @error('full_name')
                                                         is-invalid
                                                     @enderror" placeholder="Masukkan Nama Lengkap" value="@if($society->full_name){{ $society->full_name }}@else{{ old('full_name') }}@endif" required>
@@ -38,7 +38,7 @@
                                                     @enderror
                                                 </div>
                                                 <div class="col-6 mb-3">
-                                                    <label class="font-weight-bold text-danger" for="">Email</label>
+                                                    <label class="font-weight-bold text-primary" for="">Email</label>
                                                     <input type="email" name="email"  class="form-control @error('email')
                                                         is-invalid
                                                     @enderror" placeholder="Masukkan Email" value="@if($society->email){{ $society->email }}@else{{ old('email') }}@endif" required>
@@ -49,7 +49,7 @@
                                                     @enderror
                                                 </div>
                                                 <div class="col-6 mb-3">
-                                                    <label class="font-weight-bold text-danger" for="">No Telepon</label>
+                                                    <label class="font-weight-bold text-primary" for="">No Telepon</label>
                                                     <input type="number" name="phone_number" class="form-control @error('phone_number')
                                                         is-invalid
                                                     @enderror" placeholder="Masukkan No Telepon" value="@if($society->phone_number){{ $society->phone_number }}@else{{ old('phone_number') }}@endif" required>
@@ -60,7 +60,7 @@
                                                     @enderror
                                                 </div>
                                                 <div class="col-12 mb-3">
-                                                    <label class="font-weight-bold text-danger" for="">Jenis Kelamin</label>
+                                                    <label class="font-weight-bold text-primary" for="">Jenis Kelamin</label>
                                                     <select name="gender" id="" class="form-control">
                                                         @if ($society->gender = 1)
                                                             <option value="1" selected>Laki - Laki</option>
@@ -72,7 +72,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-6 mb-3">
-                                                    <label class="font-weight-bold text-danger" for="province">Provinsi</label>
+                                                    <label class="font-weight-bold text-primary" for="province">Provinsi</label>
                                                     <select name="province" id="province" class="form-control">
                                                         @foreach ($provinces as $province)
                                                             <option value="{{ $province->id }}">{{ $province->name }}</option>
@@ -83,7 +83,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-6 mb-3">
-                                                    <label class="font-weight-bold text-danger" for="cities">Kabupaten / Kota</label>
+                                                    <label class="font-weight-bold text-primary" for="cities">Kabupaten / Kota</label>
                                                     <select name="city" id="cities" class="form-control">
                                                         @foreach ($cities as $city)
                                                             <option value="{{ $city->id }}">{{ $city->name }}</option>
@@ -91,7 +91,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-6 mb-3">
-                                                    <label class="font-weight-bold text-danger" for="districts">Kecamatan</label>
+                                                    <label class="font-weight-bold text-primary" for="districts">Kecamatan</label>
                                                     <select name="district" id="districts" class="form-control">
                                                         @foreach ($districts as $district)
                                                             <option value="{{ $district->id }}">{{ $district->name }}</option>
@@ -99,13 +99,13 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-6 mb-3">
-                                                    <label class="font-weight-bold text-danger" for="sub_districts">Desa</label>
+                                                    <label class="font-weight-bold text-primary" for="sub_districts">Desa</label>
                                                     <select name="sub_district_id" id="sub_districts" class="form-control">
                                                         <option value="{{ $society->sub_district_id }}">{{ $society->SubDistrict->name }}</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-12 mb-3">
-                                                    <label class="font-weight-bold text-danger" for="">Kode Pos</label>
+                                                    <label class="font-weight-bold text-primary" for="">Kode Pos</label>
                                                     <input type="number" name="postal_code" class="form-control @error('postal_code')
                                                         is-invalid
                                                     @enderror" placeholder="Masukkan Kode Pos" value="@if($society->postal_code){{ $society->postal_code }}@else{{ old('postal_code') }}@endif" required>
@@ -116,14 +116,14 @@
                                                     @enderror
                                                 </div>
                                                 <div class="col-12 mb-3">
-                                                    <label class="font-weight-bold text-danger" for="">Alamat Lengkap</label>
+                                                    <label class="font-weight-bold text-primary" for="">Alamat Lengkap</label>
                                                     <textarea name="full_address" id="" cols="30" rows="10" class="form-control @error('full_address')
                                                         is-invalid
                                                     @enderror">@if($society->full_address){{ $society->full_address }}@else{{ old('full_address') }}@endif</textarea>
                                                 </div>
                                                 <div class="col-12 text-right">
-                                                    <a href="/societies" class="btn btn-secondary">Kembali</a>
-                                                    <button type="submit" class="btn btn-danger">Ubah</a>
+                                                    <a href="/officers" class="btn btn-secondary text-light">Kembali</a>
+                                                    <button type="submit" class="btn btn-primary">Ubah</a>
                                                 </div>
                                             </div>
                                         </form>

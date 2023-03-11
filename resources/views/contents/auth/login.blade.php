@@ -15,7 +15,7 @@
         @endif
 
         @if (session('failed'))
-        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+        <div class="alert alert-primary alert-dismissible fade show mt-3" role="alert">
             {{ session('failed') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -28,7 +28,7 @@
                 <!-- Nested Row within Card Body -->
                 <div class="row">
                     <div class="col-lg-6 d-none d-lg-block">
-                        <img src="/assets/img/bg/bg-login-image.jpg" class="img-fluid" alt="" height="600" width="500">
+                        <img src="/assets/img/bg/bg-login.svg" class="img-fluid" style="margin-top: 4.8rem;" alt="bg-login">
                     </div>
                     <div class="col-lg-6">
                         <div class="p-5">
@@ -60,21 +60,21 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox small">
-                                        <span>Anda telah mengetahui dan menyetujui <a href="" class="text-danger">Syarat
-                                                & Ketentuan</a> serta <a href="" class="text-danger">Kebijakan
-                                                Privasi</a> dari <a href="" class="text-danger">YouBID</a></span>
+                                        <span>Anda telah mengetahui dan menyetujui <a href="" class="text-primary">Syarat
+                                                & Ketentuan</a> serta <a href="" class="text-primary">Kebijakan
+                                                Privasi</a> dari <a href="" class="text-primary">YouBID</a></span>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-danger btn-user btn-block">
+                                <button type="submit" class="btn btn-primary btn-user btn-block text-light font-weight-bold">
                                     Login
                                 </button>
                                 <hr>
                             </form>
                             <div class="text-center mt-4">
-                                <a class="small text-danger" href="/register">Belum Punya Akun?</a>
+                                <a class="small text-primary text-decoration-none" href="/register">Belum Punya Akun?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small text-danger" href="/forgot-password">Lupa Kata Sandi?</a>
+                                <a class="small text-primary text-decoration-none" href="/forgot-password">Lupa Kata Sandi?</a>
                             </div>
                         </div>
                     </div>

@@ -21,4 +21,9 @@ class Ticket extends Model
             ]
         ];
     }
+
+    public function Auction()
+    {
+        return $this->hasMany(Auction::class);    
+    }
 }
