@@ -205,30 +205,6 @@
                                         <hr>
                                         <div class="row mt-1 ml-1 mb-2">
                                             <div class="col-5">
-                                                <h6 class="font-weight-bold">Waktu Dibuka</h6>
-                                            </div>
-                                            <div class="col-1">
-                                                :
-                                            </div>
-                                            <div class="col-4">
-                                                <h6>{{ \Carbon\Carbon::parse($lot->opened_date)->format('d M Y H:i') }}</h6>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row mt-1 ml-1 mb-2">
-                                            <div class="col-5">
-                                                <h6 class="font-weight-bold">Waktu Ditutup</h6>
-                                            </div>
-                                            <div class="col-1">
-                                                :
-                                            </div>
-                                            <div class="col-4">
-                                                <h6>{{ \Carbon\Carbon::parse($lot->closed_date)->format('d M Y H:i') }}</h6>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row mt-1 ml-1 mb-2">
-                                            <div class="col-5">
                                                 <h6 class="font-weight-bold">Lokasi</h6>
                                             </div>
                                             <div class="col-1">

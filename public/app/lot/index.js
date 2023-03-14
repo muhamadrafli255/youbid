@@ -18,12 +18,6 @@ function initDatatable() {
                 data: 'name', name: 'name', orderable: true, searchable: true
             },
             {
-                data: 'opened_date', name: 'opened_date', orderable: true, searchable: true
-            },
-            {
-                data: 'closed_date', name: 'closed_date', orderable: true, searchable: true
-            },
-            {
                 data: 'location', name: 'location', orderable: true, searchable: true
             },
         ],

@@ -11,11 +11,6 @@ class Location extends Model
 
     protected $guarded = ['id'];
 
-    public function Auction()
-    {
-        return $this->hasMany(Auction::class);
-    }
-
     public static function getLocation($request)
     {
         $locations = Location::select([
@@ -25,5 +20,10 @@ class Location extends Model
         ]);
 
         return $locations;
+    }
+
+    public function Lot()
+    {
+        return $this->hasMany(Lot::class);
     }
 }

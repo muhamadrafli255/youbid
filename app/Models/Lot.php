@@ -14,8 +14,6 @@ class Lot extends Model
     protected $guarded = ['id'];
 
     protected $date = [
-        'opened_date',
-        'closed_date',
         'created_at',
         'updated_at'
     ];
@@ -40,11 +38,14 @@ class Lot extends Model
         $lots = Lot::select([
             'id',
             'name',
-            'opened_date',
-            'closed_date',
-            'location'
+            'location_id'
         ]);
 
         return $lots;
+    }
+
+    public function Location()
+    {
+        return $this->belongsTo(Location::class);
     }
 }

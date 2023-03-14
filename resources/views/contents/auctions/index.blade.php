@@ -17,7 +17,7 @@
 
                             <!-- Page Heading -->
                             <h1 class="h3 mb-2 text-gray-800">{{ $title }}</h1>
-                            <p class="mb-4">Berikut adalah data barang yang ada di <a href="/" class="text-primary">YouBID</a>.</p>
+                            <p class="mb-4">Berikut adalah data lelang yang ada di <a href="/" class="text-primary">YouBID</a>.</p>
         
                             @if (session('success'))
                             <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
@@ -30,7 +30,7 @@
                             <!-- DataTales Example -->
                             <div class="card shadow mb-4 dt-container">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Tabel Barang</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Tabel Lelang</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="btn-group dropright">
@@ -44,7 +44,7 @@
                                             <button class="btn btn-sm btn-secondary col w-75 mb-2 dt-print"><i class="fas fa-print"></i> Print</button>
                                         </div>
                                     </div>
-                                    <a href="/items/create" class="btn btn-sm btn-outline-primary rounded mb-2"><i
+                                    <a href="/auctions/create" class="btn btn-sm btn-outline-primary rounded mb-2"><i
                                             class="fas fa-plus"></i> Tambah</a>
                                             <div class="float-right ml-2">
                                                 <div class="input-group input-group-sm">

@@ -4,14 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Lot;
 use App\Models\Item;
+use App\Models\Auction;
+use App\Models\Location;
 use App\Models\ItemImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class LotController extends Controller
 {
     public function index()
     {
         $title = "Daftar Lot";
+        $auction = Auction::where('opened_date', Carbon::now())->update(['status' => 1]);
+        $auction = Auction::where('closed_date', Carbon::now())->update(['status' => 0]);
         return view('contents.lots.index', compact('title'));
     }
 
@@ -19,16 +24,15 @@ class LotController extends Controller
     {
         $title = "Tambah Lot";
         $items = Item::where('is_auction', 0)->get();
-        return view('contents.lots.create', compact('title', 'items'));            
+        $locations   = Location::get();
+        return view('contents.lots.create', compact('title', 'items', 'locations'));            
     }
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
             'item_id'       =>  'required',
-            'opened_date'   =>  'required',
-            'closed_date'   =>  'required',
-            'location'      =>  'required'
+            'location_id'      =>  'required'
         ]);
 
         Lot::create($validatedData);
@@ -51,16 +55,16 @@ class LotController extends Controller
         $title = "Ubah Lot";
         $lots = Lot::where('id', $id)->get();
         $items = Item::where('is_auction', 0)->get();
-        return view('contents.lots.edit', compact('title', 'lots', 'items'));
+        foreach($lots as $lot)
+        $locations = Location::where('id', '!=', $lot->Location->id)->get();
+        return view('contents.lots.edit', compact('title', 'lots', 'items', 'locations'));
     }
 
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
             'item_id'       =>  'required',
-            'opened_date'   =>  'required',
-            'closed_date'   =>  'required',
-            'location'      =>  'required'
+            'location_id'      =>  'required'
         ]);
 
         $getLots = Lot::where('id', $id)->get();

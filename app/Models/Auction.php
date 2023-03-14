@@ -21,6 +21,9 @@ class Auction extends Model
         $auction = Auction::select([
             'id',
             'lot_id',
+            'opened_date',
+            'closed_date',
+            'initial_price',
             'status'
         ]);
 
@@ -30,10 +33,5 @@ class Auction extends Model
     public function Ticket()
     {
         return $this->belongsTo(Ticket::class);
-    }
-
-    public function Location()
-    {
-        return $this->belongsTo(Location::class);
     }
 }

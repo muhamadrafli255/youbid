@@ -73,8 +73,6 @@
                                                 <tr>
                                                     <th>No</th>
                                                     <th>Nama Lot</th>
-                                                    <th>Waktu Dibuka</th>
-                                                    <th>Waktu Ditutup</th>
                                                     <th>Lokasi</th>
                                                     <th>Opsi</th>
                                                 </tr>

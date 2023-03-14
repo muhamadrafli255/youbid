@@ -16,7 +16,10 @@ class CreateAuctionsTable extends Migration
         Schema::create('auctions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('lot_id');
-            $table->tinyInteger('status');
+            $table->timestamp('opened_date')->nullable();
+            $table->timestamp('closed_date')->nullable();
+            $table->bigInteger('initial_price');
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }

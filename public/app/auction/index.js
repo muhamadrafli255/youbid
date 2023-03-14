@@ -18,7 +18,14 @@ function initDatatable() {
                 data: 'lot_name', name: 'lot_name', orderable: true, searchable: true
             },
             {
-                data: 'initial_price', name: 'initial_price', orderable: true, searchable: true
+                data: 'initial_price', name: 'initial_price', orderable: true, searchable: true,
+                render: function(data, type, row){
+                    var rupiah = '';	
+                    var jumlah = row.initial_price;	
+                    var angkarev = jumlah.toString().split('').reverse().join('');
+                    for(var i = 0; i < angkarev.length; i++) if(i%3 == 0) rupiah += angkarev.substr(i,3)+'.';
+                    return 'Rp. '+rupiah.split('',rupiah.length-1).reverse().join('');
+                }
             },
             {
                 data: 'location', name: 'location', orderable: true, searchable: true
@@ -27,11 +34,9 @@ function initDatatable() {
                 data: 'status', name: 'status', orderable: true, class:'table-fit text-center', searchable: true,
                 render: function(data, type, row){
                     if(row.status == 0){
-                        badge = '<span class="badge badge-warning">Ditutup</span>'; 
-                    }else if(row.status == 1){
-                        badge = '<span class="badge badge-success">Dibuka</span>'; 
+                        badge = '<span class="badge badge-danger">Ditutup</span>'; 
                     }else{
-                        badge = '<span class="badge badge->primary"></span>';
+                        badge = '<span class="badge badge-primary">Dibuka</span>'; 
                     }
                     return badge;
                 }

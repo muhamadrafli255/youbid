@@ -37,37 +37,14 @@
                         @enderror
                     </div>
                     <div class="col-12 mx-auto mb-3">
-                        <label class="font-weight-bold text-primary" for="">Waktu Pembukaan Lelang</label>
-                        <input type="datetime-local" name="opened_date" class="form-control @error('opened_date')
-                            is-invalid
-                        @enderror" value="{{ $lot->opened_date }}{{ old('opened_date') }}" required>
-                        @error('opened_date')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="col-12 mx-auto mb-3">
-                        <label class="font-weight-bold text-primary" for="">Waktu Penutupan Lelang</label>
-                        <input type="datetime-local" name="closed_date" class="form-control @error('closed_date')
-                            is-invalid
-                        @enderror" value="{{ $lot->closed_date }}{{ old('closed_date') }}" required>
-                        @error('closed_date')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="col-12 mx-auto mb-3">
-                        <label class="font-weight-bold text-primary" for="">Lokasi Lelang</label>
-                        <input type="text" name="location" placeholder="Masukkan Lokasi Lelang" class="form-control @error('location')
-                            is-invalid
-                        @enderror" value="{{ $lot->location }}{{ old('location') }}" required>
-                        @error('location')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                        <label class="font-weight-bold text-primary" for="location_id">Lokasi Lelang</label>
+                        <select name="location_id" id="location_id" class="form-control">
+                            <option disabled>Pilih Lokasi...</option>
+                            <option selected value="{{ $lot->Location->id }}">{{ $lot->Location->name }}</option>
+                            @foreach ($locations as $location)
+                                <option value="{{ $location->id }}">{{ $location->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-12 text-right">
                         <a href="/lots" class="btn btn-secondary text-light">Kembali</a>

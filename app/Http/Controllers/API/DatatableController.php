@@ -76,7 +76,9 @@ class DatatableController extends Controller
     public function getLots(Request $request)
     {
         $data = \App\Models\Lot::getLots($request->query());
-        return DataTables::of($data)->make(true);
+        return DataTables::of($data)->addColumn('location', function($data){
+            return $data->Location->name;
+        })->make(true);
     }
 
     public function getMultiplePrice(Request $request)
@@ -100,10 +102,8 @@ class DatatableController extends Controller
         $data = \App\Models\Auction::getAuction(($request->query()));
         return DataTables::of($data)->addColumn('lot_name', function($data){
             return $data->Lot->name;
-        })->addColumn('initial_price', function($data){
-            return $data->Lot->initial_price;
         })->addColumn('location', function($data){
-            return $data->Lot->location;
+            return $data->Lot->Location->name;
         })->make(true);
     }
 
