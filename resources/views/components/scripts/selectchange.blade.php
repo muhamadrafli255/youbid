@@ -82,6 +82,25 @@
                 })
             })
         })
+
+        $(function(){
+            $('#category').on('change', function(){
+                let category_id = $('#category').val()
+                $.ajax({
+                    type: 'POST',
+                    url: "/getcategory",
+                    data: {category_id:category_id},
+                    cache: false,
+
+                    success: function(msg){
+                        $('#brands').html(msg)
+                    },
+                    error: function(data){
+                        console.log('error:',data)
+                    },
+                })
+            })
+        })
     })
     
 

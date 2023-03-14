@@ -83,4 +83,26 @@ class HomeController extends Controller
                 ";
         }
     }
+
+    public function getCategory(Request $request)
+    {
+        $brands = Brand::where('category_id', $request->category_id)->get();
+
+        echo "<option>Pilih Merk...</option>";
+
+        foreach($brands as $brand)
+        {
+            echo "
+                    <option value='$brand->id'>$brand->name</option>
+                ";
+        }
+    }
+
+    public function auctionObject()
+    {
+        $title = "Objek Lelang";
+        $lots = Lot::get();
+        $categories = Category::get();
+        return view('contents.user.auction.object', compact('title', 'lots', 'categories'));
+    }
 }

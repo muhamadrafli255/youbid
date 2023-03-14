@@ -24,5 +24,25 @@ class BrandSeeder extends Seeder
             'name'          =>  'Honda',
             'image'         =>  'honda.png'
         ]);
+        Brand::create([
+            'category_id'   =>  1,
+            'name'          =>  'Toyota',
+            'image'         =>  'toyota.png'
+        ]);
+        Brand::create([
+            'category_id'   =>  1,
+            'name'          =>  'Daihatsu',
+            'image'         =>  'daihatsu.png'
+        ]);
+        Brand::create([
+            'category_id'   =>  1,
+            'name'          =>  'Honda Mobil',
+            'image'         =>  'honda-mobil.png'
+        ]);
+        Brand::create([
+            'category_id'   =>  3,
+            'name'          =>  'RCB',
+            'image'         =>  'rcb.png'
+        ]);
     }
 }

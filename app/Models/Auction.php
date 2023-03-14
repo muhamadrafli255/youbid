@@ -31,4 +31,9 @@ class Auction extends Model
     {
         return $this->belongsTo(Ticket::class);
     }
+
+    public function Location()
+    {
+        return $this->belongsTo(Location::class);
+    }
 }

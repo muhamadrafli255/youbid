@@ -35,5 +35,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MultiplePriceSeeder::class);
         $this->call(TicketPriceSeeder::class);
         $this->call(AuctionSeeder::class);
+        $this->call(LocationSeeder::class);
     }
 }

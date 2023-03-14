@@ -106,4 +106,10 @@ class DatatableController extends Controller
             return $data->Lot->location;
         })->make(true);
     }
+
+    public function getLocation(Request $request)
+    {
+        $data = \App\Models\Location::getLocation(($request->query()));
+        return DataTables::of($data)->make(true);
+    }
 }

@@ -22,5 +22,9 @@ class CategorySeeder extends Seeder
             'name'  =>  'Motor',
             'image' =>  'motor.png'
         ]);
+        Category::create([
+            'name'  =>  'Sparepart',
+            'image' =>  'sparepart.png'
+        ]);
     }
 }

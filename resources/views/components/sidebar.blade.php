@@ -88,6 +88,13 @@
                 Kelola Lelang
             </div>
 
+            <!-- Nav Item - Location -->
+            <li class="nav-item {{ Request::is('location*') ? 'active' : '' }}">
+                <a class="nav-link" href="/location">
+                    <i class="fas fa-location-dot"></i>
+                <span>Lokasi</span></a>
+            </li>
+
             <!-- Nav Item - Lot -->
             <li class="nav-item {{ Request::is('lots*') ? 'active' : '' }}">
                 <a class="nav-link" href="/lots">

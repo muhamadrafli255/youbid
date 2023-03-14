@@ -13,8 +13,8 @@
                 </form>
             </ul>
             <ul class="navbar-nav me-auto mb-5 mb-lg-0 mt-1">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Objek Lelang</a>
+                <li class="nav-item {{ Request::is('auction/object') ? 'active' : '' }}">
+                    <a class="nav-link" aria-current="page" href="/auction/object">Objek Lelang</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="#">Jadwal Lelang</a>

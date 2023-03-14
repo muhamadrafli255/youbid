@@ -16,6 +16,7 @@ use App\Http\Controllers\SocietyController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemModelController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\TicketPriceController;
 use App\Http\Controllers\MultiplePriceController;
 use App\Http\Controllers\PaymentCallbackController;
@@ -37,11 +38,13 @@ Route::post('/getcities', [AddressController::class, 'getCities']);
 Route::post('/getdistricts', [AddressController::class, 'getDistricts']);
 Route::post('/getsubdistricts', [AddressController::class, 'getSubDistricts']);
 Route::post('/getmodel', [HomeController::class, 'getModel']);
+Route::post('/getcategory', [HomeController::class, 'getCategory']);
 
 Route::prefix('auction')->group(function()
 {
     Route::get('/cars', [HomeController::class, 'getCars']);
     Route::get('/moto', [HomeController::class, 'getMoto']);
+    Route::get('/object', [HomeController::class, 'auctionObject']);
 });
 /*
 |--------------------------------------------------------------------------
@@ -179,6 +182,15 @@ Route::group([
         Route::get('/{id}/edit', [ItemController::class, 'edit']);
         Route::put('/{id}/edit', [ItemController::class, 'update']);
         Route::get('/{id}/delete', [ItemController::class, 'delete']);
+    });
+
+    Route::prefix('location')->group(function(){
+        Route::get('/', [LocationController::class, 'index']);
+        Route::get('/create', [LocationController::class, 'create']);
+        Route::post('/create', [LocationController::class, 'store']);
+        Route::get('/{id}/edit', [LocationController::class, 'edit']);
+        Route::put('/{id}/edit', [LocationController::class, 'update']);
+        Route::get('/{id}/delete', [LocationController::class, 'delete']);
     });
 
     Route::prefix('lots')->group(function(){

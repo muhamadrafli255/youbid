@@ -15,20 +15,20 @@ class CreateDetailItemsTable extends Migration
     {
         Schema::create('detail_items', function (Blueprint $table) {
             $table->id();
-            $table->integer('machine_capacity');
-            $table->tinyInteger('transmission');
-            $table->string('police_number');
-            $table->string('chassis_number');
-            $table->string('machine_number');
-            $table->integer('kilometers');
-            $table->string('fuel');
+            $table->integer('machine_capacity')->nullable();
+            $table->tinyInteger('transmission')->nullable();
+            $table->string('police_number')->nullable();
+            $table->string('chassis_number')->nullable();
+            $table->string('machine_number')->nullable();
+            $table->integer('kilometers')->nullable();
+            $table->string('fuel')->nullable();
             $table->string('physical_color');
-            $table->tinyInteger('vehicle_registration');
-            $table->date('vehicle_registration_date');
-            $table->tinyInteger('book_vehicle_owner');
+            $table->tinyInteger('vehicle_registration')->nullable();
+            $table->date('vehicle_registration_date')->nullable();
+            $table->tinyInteger('book_vehicle_owner')->nullable();
             $table->tinyInteger('invoice');
             $table->tinyInteger('receipt');
-            $table->tinyInteger('owner_identity');
+            $table->tinyInteger('owner_identity')->nullable();
             $table->timestamps();
         });
     }
